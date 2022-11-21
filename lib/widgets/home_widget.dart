@@ -25,7 +25,7 @@ Widget homeWidget(scrollController){
                         width: 250,
                         padding: const EdgeInsets.only(left: 15, right: 15),
                         child: const Image(
-                          image: AssetImage("assets/images/"),
+                          image: AssetImage("assets/images/image_1.png"),
                         ),
                       ),
 
@@ -51,76 +51,214 @@ Widget homeWidget(scrollController){
                   ),
                 ),
 
-                const SizedBox(height: 10,),
+                const SizedBox(height: 20,),
                 Container(
+                  height: 40,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children:  [
+                      Spacer(),
 
-                      Container(
-                          height: 30,
-                          width: 200,
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 3, color: Colors.red),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: TextButton(
-                            onPressed: (){},
-                            child: const Text(" % Chegirmalar ",
-                              style: TextStyle(color: Colors.red,
-                                  fontWeight: FontWeight.bold),),
-                          )
+                      Expanded(
+                        flex: 6,
+
+                        child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(width: 3, color: Colors.red),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: TextButton(
+                              onPressed: (){},
+                              child: const Text(" % Chegirmalar ",
+                                style: TextStyle(color: Colors.red,
+                                    fontWeight: FontWeight.bold),),
+                            )
+                        ),
                       ),
 
-                      const SizedBox(width: 25,),
+                      Spacer(),
 
-                      Container(
-                          height: 30,
-                          width: 200,
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 3, color: Colors.green),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: TextButton(
-                            onPressed: (){},
-                            child: const Text(" Muddatli to'lov ",
-                              style: TextStyle(color: Colors.green,
-                                  fontWeight: FontWeight.bold),),
-                          )
+                      Expanded(
+                        flex: 6,
+                        child: Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(width: 3, color: Colors.green),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: TextButton(
+                              onPressed: (){},
+                              child: const Text(" Muddatli to'lov ",
+                                style: TextStyle(color: Colors.green,
+                                    fontWeight: FontWeight.bold),),
+                            )
+                        ),
                       ),
+                      Spacer(),
 
                     ],
                   ),
                 ),
 
-                const SizedBox(height: 25,),
+                const SizedBox(height: 10,),
 
                 // Column(
                 //   children: [
                 Container(
-                  padding: const EdgeInsets.all(20),
                   child: Column(
                     children: [
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(" Kategoriyalar ",
-                            style: TextStyle(color: Colors.black,
-                                fontWeight: FontWeight.bold, fontSize: 20),),
+                      Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const Text(" Kategoriyalar ",
+                              style: TextStyle(color: Colors.black,
+                                  fontWeight: FontWeight.bold, fontSize: 20),),
 
-                          TextButton(
-                            onPressed: (){},
-                            child: const Text(" Barchasini ko'rish ",
-                              style: TextStyle(color: Colors.blue,
-                                  fontWeight: FontWeight.bold),),
-                          )
-                        ],
+                            TextButton(
+                              onPressed: (){},
+                              child: const Text(" Barchasini ko'rish ",
+                                style: TextStyle(color: Colors.blue,
+                                    fontWeight: FontWeight.bold),),
+                            )
+                          ],
+                        ),
                       ),
 
                       const SizedBox(height: 20,),
 
 
+                      Container(
+                        height: 200,
+                        color: Colors.grey,
+                        child:  ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: <Widget> [
+
+                            Container(
+                              height: 50,
+                              child: const Image(
+                                image: AssetImage("assets/images/image_1.png"),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+
+                            Container(
+                              height: 50,
+                              child: const Image(
+                                image: AssetImage("assets/images/image_1.png"),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+
+                            Container(
+                              height: 50,
+                              child: const Image(
+                                image: AssetImage("assets/images/image_1.png"),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+
+                            Container(
+                              height: 50,
+                              child: const Image(
+                                image: AssetImage("assets/images/image_1.png"),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+
+                            Container(
+                              height: 50,
+                              child: const Image(
+                                image: AssetImage("assets/images/image_1.png"),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+
+                            Container(
+                              height: 50,
+                              child: const Image(
+                                image: AssetImage("assets/images/image_1.png"),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+
+                            Container(
+                              height: 50,
+                              child: const Image(
+                                image: AssetImage("assets/images/image_1.png"),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+                          ],
+                        ),
+                      ),
+                      Container(
+                        height: 200,
+                        color: Colors.grey,
+                        child:  ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: <Widget> [
+
+                            Container(
+                              height: 50,
+                              child: const Image(
+                                image: AssetImage("assets/images/image_1.png"),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+
+                            Container(
+                              height: 50,
+                              child: const Image(
+                                image: AssetImage("assets/images/image_1.png"),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+
+                            Container(
+                              height: 50,
+                              child: const Image(
+                                image: AssetImage("assets/images/image_1.png"),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+
+                            Container(
+                              height: 50,
+                              child: const Image(
+                                image: AssetImage("assets/images/image_1.png"),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+
+                            Container(
+                              height: 50,
+                              child: const Image(
+                                image: AssetImage("assets/images/image_1.png"),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+
+                            Container(
+                              height: 50,
+                              child: const Image(
+                                image: AssetImage("assets/images/image_1.png"),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+
+                            Container(
+                              height: 50,
+                              child: const Image(
+                                image: AssetImage("assets/images/image_1.png"),
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+                          ],
+                        ),
+                      ),
                       Container(
                         height: 200,
                         color: Colors.grey,
