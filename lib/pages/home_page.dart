@@ -282,7 +282,8 @@ class _HomePageState extends State<HomePage> {
           Container(
             color: Colors.black,
             child: const Center(
-              child: Text("Home", style: TextStyle(color: Colors.white),),
+              child: Text("Home", style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
 
