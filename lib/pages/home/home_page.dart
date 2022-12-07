@@ -1,9 +1,10 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:yuksalish_1/pages/katalog_page.dart';
-import 'package:yuksalish_1/pages/savatcha_page.dart';
-import 'package:yuksalish_1/pages/tulovlar_page.dart';
-import 'package:yuksalish_1/widgets/home_widget.dart';
+import 'package:yuksalish_1/pages/savatcha/savatcha_page.dart';
+import 'package:yuksalish_1/pages/tulovlar/tulovlar_page.dart';
+import 'package:yuksalish_1/widgets/home/home_widget.dart';
+
+import '../katalog/katalog_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -15,6 +16,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final ScrollController scrollController = ScrollController();
+  final PageController widgetViewController = PageController();
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
+
 
   int _selectedIndex = 0;
 
@@ -39,7 +43,7 @@ class _HomePageState extends State<HomePage> {
 List<Widget> ListPage =  [
 
   //homePage
-  homeWidget(scrollController),
+  homeWidget(scrollController,widgetViewController,_key,context),
 
   // Katalog
   const KatalogPage(),
@@ -74,6 +78,7 @@ List<BottomNavyBarItem> NavigationBatItems =  [
   ),
 ];
     return Scaffold(
+      key: _key,
 
       bottomNavigationBar: BottomNavyBar(
         selectedIndex: _selectedIndex,
@@ -95,6 +100,8 @@ List<BottomNavyBarItem> NavigationBatItems =  [
         },
         children: ListPage,
       ),
+      drawer: Drawer(),
+      endDrawer: Container(),
     );
   }
 }

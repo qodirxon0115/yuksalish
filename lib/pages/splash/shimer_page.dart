@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
-import 'home_page.dart';
+import '../home/home_page.dart';
 
 class ShimerPage extends StatefulWidget {
   const ShimerPage({Key? key}) : super(key: key);
