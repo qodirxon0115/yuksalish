@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yuksalish_1/pages/signin_page.dart';
+import 'package:yuksalish_1/pages/sign/signin_page.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -16,6 +16,7 @@ class _SignUpState extends State<SignUp> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Spacer(flex: 2,),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -194,9 +195,7 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
           ),
-          const SizedBox(
-            height: 40,
-          ),
+          Spacer(flex: 3,),
           Container(
             margin: const EdgeInsets.only(left: 15, right: 15, top: 10),
             height: 50,
@@ -226,6 +225,7 @@ class _SignUpState extends State<SignUp> {
               ],
             ),
           ),
+          Spacer()
         ],
       ),
     );

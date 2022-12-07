@@ -1,11 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:yuksalish_1/pages/home_page.dart';
-import 'package:yuksalish_1/pages/shimer_page.dart';
-import 'package:yuksalish_1/pages/signin_page.dart';
-import 'package:yuksalish_1/pages/signup_page.dart';
+import 'package:provider/provider.dart';
+import 'package:yuksalish_1/model/provider/model_pv.dart';
+import 'package:yuksalish_1/pages/home/home_page.dart';
+import 'package:yuksalish_1/pages/sign/signup_page.dart';
+import 'package:yuksalish_1/pages/splash/shimer_page.dart';
+import 'package:yuksalish_1/pages/sign/signin_page.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    /// Providers are above [MyApp] instead of inside it, so that tests
+    /// can use [MyApp] while mocking the providers
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => MainProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
