@@ -32,20 +32,7 @@ class _KatalogPageState extends State<KatalogPage> {
                 });
               },
 
-              // Center(
-              //   child: TextField(
-              //
-              //     decoration: InputDecoration(
-              //
-              //         hintText: "Nimani izlayapsiz?...",
-              //         hintStyle: TextStyle(color: Colors.grey[400]),
-              //         border: InputBorder.none,
-              //         icon: Icon(
-              //           Icons.search_outlined,
-              //           color: Colors.grey[400],
-              //         )),
-              //   ),
-              // ),
+
             ),
           ),
           Expanded(

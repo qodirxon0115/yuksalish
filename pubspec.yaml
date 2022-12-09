@@ -16,6 +16,8 @@ dependencies:
   shimmer_animation: ^2.1.0+1
   carousel_indicator: ^1.0.6
   provider: ^6.0.4
+  path_provider: ^2.0.11
+  sqflite: ^2.2.0+3
   anim_search_bar: ^2.0.2
 
 dev_dependencies:
