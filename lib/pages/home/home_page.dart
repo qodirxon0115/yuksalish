@@ -1,8 +1,8 @@
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:yuksalish_1/pages/home/widgets/home/home_widget.dart';
 import 'package:yuksalish_1/pages/savatcha/savatcha_page.dart';
 import 'package:yuksalish_1/pages/tulovlar/tulovlar_page.dart';
-import 'package:yuksalish_1/widgets/home/home_widget.dart';
 
 import '../katalog/katalog_page.dart';
 

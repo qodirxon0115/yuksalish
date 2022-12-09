@@ -1,13 +1,14 @@
-
-
-
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yuksalish_1/model/provider/model_pv.dart';
 import 'package:yuksalish_1/model/ui_modal_sheet_list.dart';
 import 'package:yuksalish_1/pages/sign/signin_page.dart';
 
-import '../widgets/home/show_modal_sheet.dart';
+import '../pages/admin_pages/admin_panel_home.dart';
+import '../pages/home/home_page.dart';
+import '../pages/home/widgets/home/show_modal_sheet.dart';
+
 
 class CustomScroll extends ScrollBehavior {
   @override
@@ -86,7 +87,7 @@ class PersistentHeader extends SliverPersistentHeaderDelegate {
   }
 }
 
-Widget appBar(context,_key){
+Widget appBar(context, _key) {
   final viewModel = Provider.of<MainProvider>(context);
   return SliverPersistentHeader(
     pinned: true,
@@ -104,16 +105,31 @@ Widget appBar(context,_key){
           ),
           IconButton(
             onPressed: () {
-              showModalSheetWidget(context,viewModel.listButton(SignIn(), context, "SignIn")  );
+              // Drawer
+              showModalSheetWidget(
+                  context, viewModel.listButton(SignIn(), context, "SignIn"));
             },
             icon: Icon(Icons.menu),
           ),
           Spacer(),
-          IconButton(
-            onPressed: () {
-              showModalSheetWidget(context,ModalSheetListAccount.UIWidgetList );
+          GestureDetector(
+            onLongPress: () {
+              viewModel.longPressed();
+              print("1 marta uzun bosildi");
             },
-            icon: Icon(Icons.person),
+            child: IconButton(
+              onPressed: () {
+                viewModel.isLongPressed != true
+                    ? showModalSheetWidget(
+                        context, ModalSheetListAccount.UIWidgetList)
+                    : Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => AdminPanelCreateTask()));
+                viewModel.isLongPressed = false;
+              },
+              icon: Icon(Icons.person),
+            ),
           ),
           SizedBox(
             width: 10,
