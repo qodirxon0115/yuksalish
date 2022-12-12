@@ -16,7 +16,7 @@ class _SignUpState extends State<SignUp> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Spacer(flex: 2,),
+          const Spacer(flex: 2,),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -26,7 +26,7 @@ class _SignUpState extends State<SignUp> {
                 child:
                 // IconButton(
                 //   icon: const
-                  Icon(Icons.arrow_back_outlined),
+                const Icon(Icons.arrow_back_outlined),
                   // onPressed: () {
                     // Navigator.pushReplacement(
                     //     context,
@@ -195,7 +195,7 @@ class _SignUpState extends State<SignUp> {
               ),
             ),
           ),
-          Spacer(flex: 3,),
+          const Spacer(flex: 3,),
           Container(
             margin: const EdgeInsets.only(left: 15, right: 15, top: 10),
             height: 50,
@@ -225,7 +225,7 @@ class _SignUpState extends State<SignUp> {
               ],
             ),
           ),
-          Spacer()
+          const Spacer()
         ],
       ),
     );

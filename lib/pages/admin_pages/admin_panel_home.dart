@@ -10,7 +10,9 @@ import '../../model/provider/model_pv.dart';
 import '../home/widgets/home/task_list.dart';
 
 class AdminPanelListTask extends StatefulWidget {
-  const AdminPanelListTask({Key? key}) : super(key: key);
+  final bool allList;
+
+  const AdminPanelListTask(this.allList,{Key? key}) : super(key: key);
 
   @override
   State<AdminPanelListTask> createState() => _AdminPanelListTaskState();
@@ -22,7 +24,7 @@ class _AdminPanelListTaskState extends State<AdminPanelListTask> {
     mainProvider.updateTaskList();
   }
 
-  void deletaeTask(context) async {
+  void deleteTask(context) async {
     final mainProvider = Provider.of<MainProvider>(
       context,
     );
@@ -31,9 +33,11 @@ class _AdminPanelListTaskState extends State<AdminPanelListTask> {
     updateTaskList(context);
   }
 
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(), body: tasksList(context));
+
+    return Scaffold(appBar: AppBar(), body: SafeArea(child: tasksList(context,widget.allList)));
   }
 }
 
@@ -59,55 +63,6 @@ class _AdminPanelCreateTaskState extends State<AdminPanelCreateTask> {
 
   @override
   Widget build(BuildContext context) {
-    // Widget form() {
-    //
-    //   return
-    //        ListView.builder(
-    //                   scrollDirection: Axis.horizontal,
-    //                   itemCount: list.length,
-    //                   padding: const EdgeInsets.only(bottom: 10),
-    //                   itemBuilder: (context, index) {
-    //                     return TextFormField(
-    //                       controller: listController[index],
-    //                       style:
-    //                           const TextStyle(color: Colors.white, fontSize: 30),
-    //                       decoration: InputDecoration(
-    //                         enabledBorder: const UnderlineInputBorder(
-    //                           borderSide: BorderSide(color: Colors.white),
-    //                         ),
-    //                         labelText: list[index],
-    //                         fillColor: Colors.white,
-    //                         labelStyle: const TextStyle(
-    //                             color: Colors.white,
-    //                             fontSize: 20,
-    //                             letterSpacing: 3),
-    //                       ),
-    //
-    //                       // const SizedBox(
-    //                       //   height: 14,
-    //                       // ),
-    //                       // TextFormField(
-    //                       //   controller: dateController,
-    //                       //   style: const TextStyle(color: Colors.white, fontSize: 30),
-    //                       //   decoration: const InputDecoration(
-    //                       //     enabledBorder: UnderlineInputBorder(
-    //                       //       borderSide: BorderSide(color: Colors.white),
-    //                       //     ),
-    //                       //     labelText: "Date",
-    //                       //     fillColor: Colors.white,
-    //                       //     labelStyle: TextStyle(
-    //                       //         color: Colors.white, fontSize: 20, letterSpacing: 3),
-    //                       //   ),
-    //                       // )
-    //                     );
-    //                   },
-    //                   // itemCount: snapshot.data?.length ?? 0,
-    //
-    //
-    //
-    //
-    //       );
-    // }
     List listController = [
       titleController,
       descriptionController,
@@ -124,7 +79,7 @@ class _AdminPanelCreateTaskState extends State<AdminPanelCreateTask> {
     ];
     return Scaffold(
         body: Container(
-          decoration:  BoxDecoration(
+          decoration:  const BoxDecoration(
             gradient: LinearGradient(
                 colors: [Color(0xff9C2CF3), Color(0xff3A49F9)],
                 begin: FractionalOffset(1.0, 0.0),
@@ -222,22 +177,6 @@ class _AdminPanelCreateTaskState extends State<AdminPanelCreateTask> {
                         color: Colors.white, fontSize: 20, letterSpacing: 3),
                   ),
 
-                  // const SizedBox(
-                  //   height: 14,
-                  // ),
-                  // TextFormField(
-                  //   controller: dateController,
-                  //   style: const TextStyle(color: Colors.white, fontSize: 30),
-                  //   decoration: const InputDecoration(
-                  //     enabledBorder: UnderlineInputBorder(
-                  //       borderSide: BorderSide(color: Colors.white),
-                  //     ),
-                  //     labelText: "Date",
-                  //     fillColor: Colors.white,
-                  //     labelStyle: TextStyle(
-                  //         color: Colors.white, fontSize: 20, letterSpacing: 3),
-                  //   ),
-                  // )
 
             ),
               );
@@ -270,7 +209,7 @@ class _AdminPanelCreateTaskState extends State<AdminPanelCreateTask> {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              const AdminPanelListTask(
+                              const AdminPanelListTask(true
                                   // dateController: dateController,
                                   // nameController: nameController,
                                   ),
@@ -305,7 +244,6 @@ class _AdminPanelCreateTaskState extends State<AdminPanelCreateTask> {
         charactericticController.text,
         categoryController.text);
 
-    var res = DatabaseHelper.intance.insert(newTask);
-    print(res);
+     DatabaseHelper.intance.insert(newTask);
   }
 }

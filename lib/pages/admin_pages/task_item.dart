@@ -15,12 +15,12 @@ class TaskItem extends StatelessWidget {
     mainProvider.updateTaskList();
   }
 
-  void deletaeTask(context)async{
+  void deleteTask(context)async{
    await DatabaseHelper.intance.delete(task.id!);
    updateTaskList(context);
   }
   @override
   Widget build(BuildContext context) {
-    return tasksList(context);
+    return Container(child: tasksList(context,false));
   }
 }
