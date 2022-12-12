@@ -1,8 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:yuksalish_1/pages/home/home_page.dart';
 import 'package:yuksalish_1/pages/sign/signin_page.dart';
 import 'package:yuksalish_1/pages/sign/signup_page.dart';
+
+import '../../model/provider/model_pv.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);
@@ -13,18 +17,25 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-
-  var isLogin = false;
-
+  var isSignUp = false;
+  var isLogin = true;
   _initTimer(){
-    Timer(const Duration(seconds: 4),(){
-      if(isLogin){
-        Navigator.pushReplacementNamed(context, SignIn.id);
+    if(isLogin){
+      Timer(const Duration(seconds: 2),(){
+
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (BuildContext context)=> HomePage()));
+
+      });
+    }else{
+       Timer(const Duration(seconds: 4),(){
+      if(isSignUp){
+          Navigator.pushReplacementNamed(context, SignIn.id);
       }else{
         Navigator.pushReplacementNamed(context, SignUp.id);
       }
+
     });
-  }
+  }}
 
   @override
   void initState() {
@@ -35,6 +46,9 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
+    
+
+
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(50),

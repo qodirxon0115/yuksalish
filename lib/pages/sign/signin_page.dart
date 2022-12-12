@@ -21,12 +21,12 @@ class _SignInState extends State<SignIn> {
       backgroundColor: Colors.grey[250],
       body: Column(
         children: [
-          Spacer(
+          const Spacer(
             flex: 8,
           ),
-          Expanded(
+          const Expanded(
             flex: 2,
-            child: const Center(
+            child: Center(
               child: Text(
                 "Xush Kelibsiz!",
                 style: TextStyle(
@@ -37,8 +37,8 @@ class _SignInState extends State<SignIn> {
             ),
           ),
 
-          Expanded(
-            child: const Center(
+          const Expanded(
+            child:  Center(
               child: Text(
                 "Mavjud hisob qaydnomangizga kiring",
                 style: TextStyle(color: Colors.grey),
@@ -46,7 +46,7 @@ class _SignInState extends State<SignIn> {
             ),
           ),
 
-          Spacer(
+          const Spacer(
             flex: 3,
           ),
 
@@ -73,7 +73,7 @@ class _SignInState extends State<SignIn> {
             ),
 
 
-          Spacer(),
+          const Spacer(),
 
           Container(
             margin: const EdgeInsets.only(left: 20, right: 20),
@@ -94,7 +94,7 @@ class _SignInState extends State<SignIn> {
             ),
           ),
 
-          Spacer(),
+          const Spacer(),
 
           Expanded(
             flex: 3,
@@ -115,7 +115,7 @@ class _SignInState extends State<SignIn> {
               ],
             ),
           ),
-          Spacer(),
+          const Spacer(),
 
           Expanded(
             flex: 2,
@@ -131,8 +131,8 @@ class _SignInState extends State<SignIn> {
                   onPressed: () {},
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
+                    children: const [
+                       Text(
                         "KIRISH",
                         style: TextStyle(
                             color: Colors.white, fontWeight: FontWeight.bold),
@@ -144,7 +144,7 @@ class _SignInState extends State<SignIn> {
             ),
           ),
 
-          Spacer(),
+          const Spacer(),
 
           Expanded(
             child: Center(
@@ -154,7 +154,7 @@ class _SignInState extends State<SignIn> {
               ),
             ),
           ),
-          Spacer(),
+          const Spacer(),
 
           // const SizedBox(
           //   height: 15,
@@ -209,7 +209,7 @@ class _SignInState extends State<SignIn> {
               ),
             ),
           ),
-          Spacer(),
+          const Spacer(),
           // const SizedBox(height: 20,),
 
           Expanded(
@@ -241,7 +241,7 @@ class _SignInState extends State<SignIn> {
               ),
             ),
           ),
-          Spacer(),
+          const Spacer(),
         ],
       ),
     );

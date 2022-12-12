@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yuksalish_1/pages/admin_pages/admin_panel_home.dart';
 import 'package:yuksalish_1/pages/home/widgets/home/task_list.dart';
+
+import '../../../admin_pages/admin_panel_home.dart';
 
 
 Widget bodyListView(context) {
@@ -72,7 +73,15 @@ Widget bodyListView(context) {
                 ),
                 TextButton(
                   onPressed: () {
-
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                        const AdminPanelListTask(true
+                          // dateController: dateController,
+                          // nameController: nameController,
+                        ),
+                      ),
+                    );
                   },
                   child: const Text(
                     " Barchasini ko'rish ",
@@ -86,52 +95,7 @@ Widget bodyListView(context) {
           const SizedBox(
             height: 20,
           ),
-          tasksList(context),
-          // Container(
-          //   height: 200,
-          //   color: Colors.grey,
-          //   child: ListView.builder(
-          //       scrollDirection: Axis.horizontal,
-          //       itemCount: 20,
-          //       itemBuilder: (BuildContext context, int index) {
-          //         return Container(
-          //           height: 50,
-          //           child: const Image(
-          //             image: AssetImage("assets/images/image_1.png"),
-          //           ),
-          //         );
-          //       }),
-          // ),
-          // Container(
-          //   height: 200,
-          //   color: Colors.grey,
-          //   child: ListView.builder(
-          //       scrollDirection: Axis.horizontal,
-          //       itemCount: 20,
-          //       itemBuilder: (BuildContext context, int index) {
-          //         return Container(
-          //           height: 50,
-          //           child: const Image(
-          //             image: AssetImage("assets/images/image_1.png"),
-          //           ),
-          //         );
-          //       }),
-          // ),
-          // Container(
-          //   height: 200,
-          //   color: Colors.grey,
-          //   child: ListView.builder(
-          //       scrollDirection: Axis.horizontal,
-          //       itemCount: 20,
-          //       itemBuilder: (BuildContext context, int index) {
-          //         return Container(
-          //           height: 50,
-          //           child: const Image(
-          //             image: AssetImage("assets/images/image_1.png"),
-          //           ),
-          //         );
-          //       }),
-          // ),
+          tasksList(context,false),
         ],
       ),
     ],

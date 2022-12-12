@@ -1,12 +1,11 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
 Timer showModalSheetWidget(context,listTile) {
   return Timer(
-    Duration(milliseconds: 100),
+    const Duration(milliseconds: 100),
     () {
       showModalBottomSheet<void>(
         isScrollControlled: true,
@@ -25,7 +24,7 @@ Timer showModalSheetWidget(context,listTile) {
               children: <Widget>[
             Center(
                 child: Container(
-                  margin: EdgeInsets.only(top: 10,bottom: 15),
+                  margin: const EdgeInsets.only(top: 10,bottom: 15),
                   height: 15,
                   width: 80,
                   decoration: BoxDecoration(
