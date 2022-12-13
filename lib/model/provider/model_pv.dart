@@ -12,11 +12,13 @@ class MainProvider extends ChangeNotifier {
   int pageIndexCount = 0;
   bool isLongPressed = false;
   bool isLoading = true;
+  double height_ = 0;
 
 
 
 
-void isSelected(value){
+
+  void isSelected(value){
   notifyListeners();
   pageIndex = value;
 

@@ -19,7 +19,7 @@ Widget tasksList(context, bool allList) {
   });
   return SizedBox(
       height: !allList
-          ? MediaQuery.of(context).size.height * 0.8
+          ? MediaQuery.of(context).size.height * 0.9
           : MediaQuery.of(context).size.height,
       child: Consumer<MainProvider>(builder: (context, data, child) {
         return StreamBuilder(

@@ -38,15 +38,16 @@ class _AdminPanelListTaskState extends State<AdminPanelListTask> {
   Widget build(BuildContext context) {
     bool seeAll = true;
     return Scaffold(
+
       body: CustomScrollView(
+
         slivers: [
           appBar(context, _key,seeAll),
           SliverList(
+
             delegate: SliverChildListDelegate(
               [
-                SafeArea(
-                  child: tasksList(context, widget.allList),
-                ),
+                tasksList(context, widget.allList),
               ],
             ),
           ),
