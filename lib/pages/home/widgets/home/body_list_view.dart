@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:yuksalish_1/pages/home/widgets/home/task_list.dart';
+import 'package:yuksalish_1/pages/home/widgets/home/task_list_widget/task_list.dart';
 
 import '../../../admin_pages/admin_panel_home.dart';
 

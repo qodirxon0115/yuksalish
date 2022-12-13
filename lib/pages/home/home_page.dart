@@ -39,16 +39,15 @@ class _HomePageState extends State<HomePage> {
     _pageController.dispose();
     super.dispose();
   }
-  bool bolean = false;
 
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(seconds: 2),(){
-      setState((){
-        bolean = true;
-      });
-
-    });
+    // Timer(Duration(seconds: 2),(){
+    //   setState((){
+    //     bolean = true;
+    //   });
+    //
+    // });
 List<Widget> ListPage =  [
 
   //homePage

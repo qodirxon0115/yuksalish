@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yuksalish_1/model/provider/model_pv.dart';
 import 'package:yuksalish_1/model/ui_modal_sheet_list.dart';
+import 'package:yuksalish_1/pages/home/home_page.dart';
 import 'package:yuksalish_1/pages/sign/signin_page.dart';
 
 import '../../../admin_pages/admin_panel_home.dart';
@@ -83,7 +84,7 @@ class PersistentHeader extends SliverPersistentHeaderDelegate {
   }
 }
 
-Widget appBar(context, key) {
+Widget appBar(context, key,seeAll) {
   final viewModel = Provider.of<MainProvider>(context);
   return SliverPersistentHeader(
     pinned: true,
@@ -100,18 +101,20 @@ Widget appBar(context, key) {
           ),
           IconButton(
             onPressed: () {
+              seeAll ?
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context)=> HomePage())):
               // Drawer
               showModalSheetWidget(
                   context, viewModel.listButton(const SignIn(), context, "SignIn"));
             },
-            icon: const Icon(Icons.menu),
+            icon: seeAll ?  const Icon(Icons.arrow_back) : const Icon(Icons.menu),
           ),
           const Spacer(),
           GestureDetector(
             onLongPress: () {
               viewModel.longPressed();
             },
-            child: IconButton(
+            child: !seeAll ? IconButton(
               onPressed: () {
                 viewModel.isLongPressed != true
                     ? showModalSheetWidget(
@@ -123,7 +126,7 @@ Widget appBar(context, key) {
                 viewModel.isLongPressed = false;
               },
               icon: const Icon(Icons.person),
-            ),
+            ) : Container(),
           ),
           const SizedBox(
             width: 10,

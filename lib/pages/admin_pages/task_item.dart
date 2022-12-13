@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../../model/data/database_helpaer.dart';
 import '../../model/data/task.dart';
 import '../../model/provider/model_pv.dart';
-import '../home/widgets/home/task_list.dart';
+import '../home/widgets/home/task_list_widget/task_list.dart';
 
 class TaskItem extends StatelessWidget {
   final Task task;

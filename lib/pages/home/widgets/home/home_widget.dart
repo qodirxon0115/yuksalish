@@ -5,11 +5,12 @@ import 'body_list_view.dart';
 import 'home_head_banner_view.dart';
 
 Widget homeWidget(scrollController, widgetViewController, key, context) {
+  bool seeAll = false;
   return CustomScrollView(
     scrollBehavior: CustomScroll(),
     controller: scrollController,
     slivers: [
-      appBar(context, key),
+      appBar(context, key,seeAll),
       body(widgetViewController,context),
     ],
   );
