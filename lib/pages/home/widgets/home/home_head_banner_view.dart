@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,10 +8,7 @@ import '../../../../model/data/database_helpaer.dart';
 import '../../../../model/data/task.dart';
 
 Widget homeBannerView(context) {
-
-  CarouselController _controller;
   final viewModel = Provider.of<MainProvider>(context);
-  dynamic itemLength = 10;
 
   return Container(
     height: MediaQuery.of(context).size.height * 0.35,
@@ -24,117 +19,125 @@ Widget homeBannerView(context) {
         Expanded(
           flex: 8,
           child: Consumer<MainProvider>(builder: (context, data, child) {
-            return FutureBuilder(
-                future: DatabaseHelper.intance.getTasks(),
+            return StreamBuilder(
+                stream: DatabaseHelper.intance.getTasks().asStream(),
                 builder:
                     (BuildContext context, AsyncSnapshot<List<Task>> snapshot) {
-                  return Column(
-                    children: [
-
-                      !viewModel.isLoading ?
-                      CarouselSlider(
-                        items: snapshot.data
-                            ?.map(
-                              (item) => Container(
-                                margin: const EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  image: const DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image: AssetImage(
-                                        "assets/images/image_1.png"),
-                                  ),
-                                  color: Colors.indigo,
-                                  borderRadius: BorderRadius.circular(25),
-                                  boxShadow: [
-
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.9),
-                                      spreadRadius: 1,
-                                      blurRadius: 5,
-                                      offset: Offset(0, 5), // changes x,y position of shadow
-                                    ),
-                                  ],
-                                ),
-                                child: Center(
-                                    child: Text(item.title.toString())),
-                              ),
-                            )
-                            .toList(),
-                        options: CarouselOptions(
-                            onPageChanged: (index, reason) {
-                              viewModel.isSelected(index);
-                            },
-                            autoPlay: true,
-                            enlargeCenterPage: true,
-                            aspectRatio: 3.0),
-                      )
-                          :
-
-                              Container(
-
-                                padding: EdgeInsets.symmetric(horizontal: 20),
-                        width: double.infinity,
-                        height: 135,
-                        margin: const EdgeInsets.all(8),
-
-                        child: Shimmer(
-                                duration: const Duration(milliseconds: 800), //Default value
-                                interval: const Duration(milliseconds: 300),
-                            //Default value: Duration(seconds: 0)
-                                color: Colors.white, //Default value
-                                colorOpacity: 0.4, //Default value
-                                enabled: true, //Default value
-                                direction: const ShimmerDirection.fromLTRB(),  //Default Value
-                                child: Container(
-                                  decoration: BoxDecoration(
-borderRadius: BorderRadius.circular(25),
-                                    color: Colors.black12,
-
-                                  ),
-                                )),
-                      ),
-
-
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                  return snapshot.data != null
+                      ? Column(
                           children: [
-                            ...List.generate(
-                                snapshot.data!.length,
-                                (index) => Indicator(
-                                      viewModel.pageIndex == index
-                                          ? true
-                                          : false,
-                                    ))
-                          ],
-                        ),
-                      ),
 
-                      //   Expanded(
-                      //   child: CarouselSlider(
-                      //
-                      //           items: snapshot.data
-                      //               ?.map((item) =>
-                      //               Expanded(
-                      //                   child:  Card(
-                      //                 child: Container(
-                      //                   width: 2000,
-                      //             decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.cover,image: AssetImage("assets/images/image_1.png"))),
-                      //                       child: Center(child: Text(item.title.toString())),
-                      //                     ),
-                      //               )))
-                      //               .toList(),
-                      //           options: CarouselOptions(
-                      //
-                      //             autoPlay: true,
-                      //             enlargeCenterPage: true,
-                      //             aspectRatio: 3.0
-                      //           ),
-                      //
-                      //     ),
-                      // ),
-                    ],
+                                 CarouselSlider(
+                                    items: snapshot.data
+                                        ?.map(
+                                          (item) => Container(
+                                            margin: const EdgeInsets.all(8),
+                                            decoration: BoxDecoration(
+                                              image: const DecorationImage(
+                                                fit: BoxFit.cover,
+                                                image: AssetImage(
+                                                    "assets/images/image_1.png"),
+                                              ),
+                                              color: Colors.indigo,
+                                              borderRadius:
+                                                  BorderRadius.circular(25),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                  color: Colors.grey
+                                                      .withOpacity(0.3),
+                                                  spreadRadius: 1,
+                                                  blurRadius: 5,
+                                                  offset: Offset(0,
+                                                      5), // changes x,y position of shadow
+                                                ),
+                                              ],
+                                            ),
+                                            child: Center(
+                                                child: Text(
+                                                    item.title.toString())),
+                                          ),
+                                        )
+                                        .toList(),
+                                    options: CarouselOptions(
+                                        onPageChanged: (index, reason) {
+                                          viewModel.isSelected(index);
+                                        },
+                                        autoPlay: true,
+                                        enlargeCenterPage: true,
+                                        aspectRatio: 3.0),
+                                  ),
+
+
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  ...List.generate(
+                                      snapshot.data!.length,
+                                      (index) => Indicator(
+                                            viewModel.pageIndex == index
+                                                ? true
+                                                : false,
+                                          ))
+                                ],
+                              ),
+                            ),
+
+                            //   Expanded(
+                            //   child: CarouselSlider(
+                            //
+                            //           items: snapshot.data
+                            //               ?.map((item) =>
+                            //               Expanded(
+                            //                   child:  Card(
+                            //                 child: Container(
+                            //                   width: 2000,
+                            //             decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.cover,image: AssetImage("assets/images/image_1.png"))),
+                            //                       child: Center(child: Text(item.title.toString())),
+                            //                     ),
+                            //               )))
+                            //               .toList(),
+                            //           options: CarouselOptions(
+                            //
+                            //             autoPlay: true,
+                            //             enlargeCenterPage: true,
+                            //             aspectRatio: 3.0
+                            //           ),
+                            //
+                            //     ),
+                            // ),
+                          ],
+                        )
+                      :  Container(
+                    padding:
+                    EdgeInsets.symmetric(horizontal: 20),
+                    width: double.infinity,
+                    height: 135,
+                    margin: const EdgeInsets.all(8),
+                    child: Shimmer(
+                        duration:
+                        const Duration(milliseconds: 800),
+                        //Default value
+                        interval:
+                        const Duration(milliseconds: 300),
+                        //Default value: Duration(seconds: 0)
+                        color: Colors.white,
+                        //Default value
+                        colorOpacity: 0.4,
+                        //Default value
+                        enabled: true,
+                        //Default value
+                        direction:
+                        const ShimmerDirection.fromLTRB(),
+                        //Default Value
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius:
+                            BorderRadius.circular(25),
+                            color: Colors.black12,
+                          ),
+                        )),
                   );
 
                   //   Column(
