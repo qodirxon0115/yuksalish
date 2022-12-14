@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import '../../model/data/database_helpaer.dart';
 import '../../model/data/task.dart';
 import '../../model/provider/model_pv.dart';
-import '../home/widgets/home/task_list.dart';
+import '../home/widgets/home/task_list_widget/task_list.dart';
 
 class TaskItem extends StatelessWidget {
   final Task task;
@@ -15,12 +15,12 @@ class TaskItem extends StatelessWidget {
     mainProvider.updateTaskList();
   }
 
-  void deletaeTask(context)async{
+  void deleteTask(context)async{
    await DatabaseHelper.intance.delete(task.id!);
    updateTaskList(context);
   }
   @override
   Widget build(BuildContext context) {
-    return tasksList(context);
+    return Container(child: tasksList(context,false));
   }
 }

@@ -1,50 +1,95 @@
 
-
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../data/task.dart';
 
-class MainProvider extends ChangeNotifier{
-  // dynamic navigator;
+class MainProvider extends ChangeNotifier {
+
   late Task task;
   int pageIndex = 0;
+  int pageIndexCount = 0;
   bool isLongPressed = false;
+  bool isLoading = true;
+  double height_ = 0;
 
-  TextEditingController? nameController;
-  TextEditingController? dateController;
-  // index aniqlash uchun funksiya
-  void counter(index){
-    pageIndex = index;
-    notifyListeners();
-  }
 
-  void longPressed(){
+
+
+
+  void isSelected(value){
+  notifyListeners();
+  pageIndex = value;
+
+}
+
+
+  void longPressed() {
     isLongPressed = true;
     notifyListeners();
   }
+
   void updateTaskList() {
     notifyListeners();
   }
 
-
-  List<ElevatedButton> listButton(Widget widget,context, String title){
-    return  [
-      ElevatedButton(onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>widget));}, child: Text(title)),
-      ElevatedButton(onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>widget));}, child: Text(title)),
-      ElevatedButton(onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>widget));}, child: Text(title)),
-      ElevatedButton(onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>widget));}, child: Text(title)),
-      ElevatedButton(onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>widget));}, child: Text(title)),
-      ElevatedButton(onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>widget));}, child: Text(title)),
-      ElevatedButton(onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>widget));}, child: Text(title)),
-      ElevatedButton(onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>widget));}, child: Text(title)),
-      ElevatedButton(onPressed: (){Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context)=>widget));}, child: Text(title)),
-
-
+  List<ElevatedButton> listButton(Widget widget, context, String title) {
+    return [
+      ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (BuildContext context) => widget));
+          },
+          child: Text(title)),
+      ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (BuildContext context) => widget));
+          },
+          child: Text(title)),
+      ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (BuildContext context) => widget));
+          },
+          child: Text(title)),
+      ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (BuildContext context) => widget));
+          },
+          child: Text(title)),
+      ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (BuildContext context) => widget));
+          },
+          child: Text(title)),
+      ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (BuildContext context) => widget));
+          },
+          child: Text(title)),
+      ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (BuildContext context) => widget));
+          },
+          child: Text(title)),
+      ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (BuildContext context) => widget));
+          },
+          child: Text(title)),
+      ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (BuildContext context) => widget));
+          },
+          child: Text(title)),
     ];
-     notifyListeners();
   }
-
 }

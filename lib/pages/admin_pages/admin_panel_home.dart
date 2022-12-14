@@ -1,16 +1,19 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:yuksalish_1/pages/home/widgets/home/custom_appBar.dart';
 import '../../model/data/database_helpaer.dart';
 import '../../model/data/task.dart';
 
 import 'package:provider/provider.dart';
 
 import '../../model/provider/model_pv.dart';
-import '../home/widgets/home/task_list.dart';
+import '../home/widgets/home/task_list_widget/task_list.dart';
 
 class AdminPanelListTask extends StatefulWidget {
-  const AdminPanelListTask({Key? key}) : super(key: key);
+  final bool allList;
+
+  const AdminPanelListTask(this.allList, {Key? key}) : super(key: key);
 
   @override
   State<AdminPanelListTask> createState() => _AdminPanelListTaskState();
@@ -22,7 +25,7 @@ class _AdminPanelListTaskState extends State<AdminPanelListTask> {
     mainProvider.updateTaskList();
   }
 
-  void deletaeTask(context) async {
+  void deleteTask(context) async {
     final mainProvider = Provider.of<MainProvider>(
       context,
     );
@@ -30,10 +33,27 @@ class _AdminPanelListTaskState extends State<AdminPanelListTask> {
     await DatabaseHelper.intance.delete(mainProvider.task.id!);
     updateTaskList(context);
   }
-
+  final GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(appBar: AppBar(), body: tasksList(context));
+    bool seeAll = true;
+    return Scaffold(
+
+      body: CustomScrollView(
+
+        slivers: [
+          appBar(context, _key,seeAll),
+          SliverList(
+
+            delegate: SliverChildListDelegate(
+              [
+                tasksList(context, widget.allList),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -53,67 +73,20 @@ class _AdminPanelCreateTaskState extends State<AdminPanelCreateTask> {
   final TextEditingController charactericticController =
       TextEditingController();
   final TextEditingController categoryController = TextEditingController();
+  final TextEditingController modelController = TextEditingController();
 
   void updateTask() async {}
   bool onpressed = false;
 
   @override
   Widget build(BuildContext context) {
-    // Widget form() {
-    //
-    //   return
-    //        ListView.builder(
-    //                   scrollDirection: Axis.horizontal,
-    //                   itemCount: list.length,
-    //                   padding: const EdgeInsets.only(bottom: 10),
-    //                   itemBuilder: (context, index) {
-    //                     return TextFormField(
-    //                       controller: listController[index],
-    //                       style:
-    //                           const TextStyle(color: Colors.white, fontSize: 30),
-    //                       decoration: InputDecoration(
-    //                         enabledBorder: const UnderlineInputBorder(
-    //                           borderSide: BorderSide(color: Colors.white),
-    //                         ),
-    //                         labelText: list[index],
-    //                         fillColor: Colors.white,
-    //                         labelStyle: const TextStyle(
-    //                             color: Colors.white,
-    //                             fontSize: 20,
-    //                             letterSpacing: 3),
-    //                       ),
-    //
-    //                       // const SizedBox(
-    //                       //   height: 14,
-    //                       // ),
-    //                       // TextFormField(
-    //                       //   controller: dateController,
-    //                       //   style: const TextStyle(color: Colors.white, fontSize: 30),
-    //                       //   decoration: const InputDecoration(
-    //                       //     enabledBorder: UnderlineInputBorder(
-    //                       //       borderSide: BorderSide(color: Colors.white),
-    //                       //     ),
-    //                       //     labelText: "Date",
-    //                       //     fillColor: Colors.white,
-    //                       //     labelStyle: TextStyle(
-    //                       //         color: Colors.white, fontSize: 20, letterSpacing: 3),
-    //                       //   ),
-    //                       // )
-    //                     );
-    //                   },
-    //                   // itemCount: snapshot.data?.length ?? 0,
-    //
-    //
-    //
-    //
-    //       );
-    // }
     List listController = [
       titleController,
       descriptionController,
       priceController,
       charactericticController,
       categoryController,
+      modelController,
     ];
     List list = [
       "Name",
@@ -121,18 +94,19 @@ class _AdminPanelCreateTaskState extends State<AdminPanelCreateTask> {
       "Price",
       "Characterictic",
       "Category",
+      "Model",
     ];
     return Scaffold(
         body: Container(
-          decoration:  BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Color(0xff9C2CF3), Color(0xff3A49F9)],
-                begin: FractionalOffset(1.0, 0.0),
-                end: FractionalOffset(1.0, 1.0),
-                tileMode: TileMode.clamp),
-          ),
-          child: CustomScrollView(
-      slivers: [
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+            colors: [Color(0xff9C2CF3), Color(0xff3A49F9)],
+            begin: FractionalOffset(1.0, 0.0),
+            end: FractionalOffset(1.0, 1.0),
+            tileMode: TileMode.clamp),
+      ),
+      child: CustomScrollView(
+        slivers: [
           SliverList(
               delegate: SliverChildListDelegate([
             Container(
@@ -200,47 +174,25 @@ class _AdminPanelCreateTaskState extends State<AdminPanelCreateTask> {
             ),
           ])),
           SliverList(
-
               delegate:
-              SliverChildBuilderDelegate(
-                      childCount: listController.length,
+                  SliverChildBuilderDelegate(childCount: listController.length,
                       (BuildContext contex, int index) {
-            return
-
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextFormField(
-                  controller: listController[index],
-                  style: const TextStyle(color: Colors.white, fontSize: 30),
-                  decoration: InputDecoration(
-                    enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white),
-                    ),
-                    labelText: list[index],
-                    fillColor: Colors.white,
-                    labelStyle: const TextStyle(
-                        color: Colors.white, fontSize: 20, letterSpacing: 3),
+            return Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: TextFormField(
+                controller: listController[index],
+                style: const TextStyle(color: Colors.white, fontSize: 30),
+                decoration: InputDecoration(
+                  enabledBorder: const UnderlineInputBorder(
+                    borderSide: BorderSide(color: Colors.white),
                   ),
-
-                  // const SizedBox(
-                  //   height: 14,
-                  // ),
-                  // TextFormField(
-                  //   controller: dateController,
-                  //   style: const TextStyle(color: Colors.white, fontSize: 30),
-                  //   decoration: const InputDecoration(
-                  //     enabledBorder: UnderlineInputBorder(
-                  //       borderSide: BorderSide(color: Colors.white),
-                  //     ),
-                  //     labelText: "Date",
-                  //     fillColor: Colors.white,
-                  //     labelStyle: TextStyle(
-                  //         color: Colors.white, fontSize: 20, letterSpacing: 3),
-                  //   ),
-                  // )
-
-            ),
-              );
+                  labelText: list[index],
+                  fillColor: Colors.white,
+                  labelStyle: const TextStyle(
+                      color: Colors.white, fontSize: 20, letterSpacing: 3),
+                ),
+              ),
+            );
           })),
           SliverList(
               delegate: SliverChildListDelegate([
@@ -253,12 +205,12 @@ class _AdminPanelCreateTaskState extends State<AdminPanelCreateTask> {
                     tileMode: TileMode.clamp),
               ),
               child: TextButton(
-
                 onPressed: () {
                   if (titleController.text != "" &&
                       descriptionController.text != "" &&
                       priceController.text != "" &&
                       charactericticController.text != "" &&
+                      modelController.text != "" &&
                       categoryController.text != "") {
                     createTask();
                     updateTask();
@@ -270,7 +222,7 @@ class _AdminPanelCreateTaskState extends State<AdminPanelCreateTask> {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              const AdminPanelListTask(
+                              const AdminPanelListTask(true
                                   // dateController: dateController,
                                   // nameController: nameController,
                                   ),
@@ -286,26 +238,27 @@ class _AdminPanelCreateTaskState extends State<AdminPanelCreateTask> {
                       ? const CircularProgressIndicator()
                       : Text(
                           widget.task == null ? 'Create task' : 'Update task',
-                          style: const TextStyle(color: Colors.white, fontSize: 20),
+                          style: const TextStyle(
+                              color: Colors.white, fontSize: 20),
                         ),
                 ),
               ),
             ),
           ]))
-      ],
-    ),
-        ));
+        ],
+      ),
+    ));
   }
 
   void createTask() {
     Task newTask = Task(
-        titleController.text,
-        descriptionController.text,
-        priceController.text,
-        charactericticController.text,
-        categoryController.text);
+      titleController.text,
+      descriptionController.text,
+      priceController.text,
+      charactericticController.text,
+      categoryController.text,
+    );
 
-    var res = DatabaseHelper.intance.insert(newTask);
-    print(res);
+    DatabaseHelper.intance.insert(newTask);
   }
 }
