@@ -1,13 +1,12 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yuksalish_1/model/provider/model_pv.dart';
 import 'package:yuksalish_1/model/ui_modal_sheet_list.dart';
+import 'package:yuksalish_1/pages/home/home_page.dart';
 import 'package:yuksalish_1/pages/sign/signin_page.dart';
 
-import '../pages/admin_pages/admin_panel_home.dart';
-import '../pages/home/home_page.dart';
-import '../pages/home/widgets/home/show_modal_sheet.dart';
+import '../../../admin_pages/admin_panel_home.dart';
+import 'show_modal_sheet.dart';
 
 
 class CustomScroll extends ScrollBehavior {
@@ -53,9 +52,7 @@ class PersistentHeader extends SliverPersistentHeaderDelegate {
         borderRadius: BorderRadius.only(
           topRight: Radius.elliptical(topRight ?? 0, topRight ?? 0),
           topLeft: Radius.elliptical(topRight ?? 0, topRight ?? 0),
-          // topLeft: Radius.circular(topLeft! ?? 0),
-          // bottomLeft: Radius.circular(bottomLeft! ?? 0),
-          // bottomRight: Radius.circular(bottomRight! ?? 0),
+
         ),
         gradient: LinearGradient(
           begin: Alignment.bottomCenter,
@@ -67,7 +64,7 @@ class PersistentHeader extends SliverPersistentHeaderDelegate {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           widget,
-          SizedBox(
+          const SizedBox(
             height: 5,
           )
         ],
@@ -87,7 +84,7 @@ class PersistentHeader extends SliverPersistentHeaderDelegate {
   }
 }
 
-Widget appBar(context, _key) {
+Widget appBar(context, key,seeAll) {
   final viewModel = Provider.of<MainProvider>(context);
   return SliverPersistentHeader(
     pinned: true,
@@ -97,41 +94,41 @@ Widget appBar(context, _key) {
         Colors.black12,
       ],
       widget: Row(
-        // Format this to meet your need
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           IconButton(
             onPressed: () {
+              seeAll ?
+              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context)=> HomePage())):
               // Drawer
               showModalSheetWidget(
-                  context, viewModel.listButton(SignIn(), context, "SignIn"));
+                  context, viewModel.listButton(const SignIn(), context, "SignIn"));
             },
-            icon: Icon(Icons.menu),
+            icon: seeAll ?  const Icon(Icons.arrow_back) : const Icon(Icons.menu),
           ),
-          Spacer(),
+          const Spacer(),
           GestureDetector(
             onLongPress: () {
               viewModel.longPressed();
-              print("1 marta uzun bosildi");
             },
-            child: IconButton(
+            child: !seeAll ? IconButton(
               onPressed: () {
                 viewModel.isLongPressed != true
                     ? showModalSheetWidget(
-                        context, ModalSheetListAccount.UIWidgetList)
+                        context, ModalSheetListAccount.uiWidgetList)
                     : Navigator.push(
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => AdminPanelCreateTask()));
                 viewModel.isLongPressed = false;
               },
-              icon: Icon(Icons.person),
-            ),
+              icon: const Icon(Icons.person),
+            ) : Container(),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
         ],

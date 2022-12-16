@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:yuksalish_1/pages/home/widgets/home/home_widget.dart';
@@ -15,6 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
   final ScrollController scrollController = ScrollController();
   final PageController widgetViewController = PageController();
   final GlobalKey<ScaffoldState> _key = GlobalKey();
@@ -39,7 +42,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
+    // Timer(Duration(seconds: 2),(){
+    //   setState((){
+    //     bolean = true;
+    //   });
+    //
+    // });
 List<Widget> ListPage =  [
 
   //homePage
