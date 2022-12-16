@@ -10,16 +10,13 @@ Widget homeWidget(scrollController, widgetViewController, key, context) {
     scrollBehavior: CustomScroll(),
     controller: scrollController,
     slivers: [
-      appBar(context, key,seeAll),
-      body(widgetViewController,context),
+      appBar(context, key, seeAll),
+      body(widgetViewController, context),
     ],
   );
 }
 
-
-
-Widget body(widgetViewController,context) {
-
+Widget body(widgetViewController, context) {
   return SliverList(
     delegate: SliverChildListDelegate([
       Column(

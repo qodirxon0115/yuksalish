@@ -40,12 +40,11 @@ class PersistentHeader extends SliverPersistentHeaderDelegate {
   });
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-
-
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return ClipRect(
         child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 30.0, sigmaY: 10.0),
+            filter: ImageFilter.blur(sigmaX: 30.0, sigmaY: 30.0),
             child: Container(
               width: width ?? double.infinity,
               height: height ?? 110,
@@ -81,10 +80,9 @@ Widget appBar(context, key, seeAll) {
   return SliverPersistentHeader(
     pinned: true,
     delegate: PersistentHeader(
-
-      widget:  Container(
-  color: Colors.transparent,
-  child:  Row(
+      widget: Container(
+        color: Colors.transparent,
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             const SizedBox(
@@ -95,7 +93,7 @@ Widget appBar(context, key, seeAll) {
                 print(MediaQuery.of(context).size.height);
                 seeAll
                     ? Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (BuildContext context) => HomePage()))
+                        builder: (BuildContext context) => const HomePage()))
                     :
                     // Drawer
                     showModalSheetWidget(
@@ -127,7 +125,9 @@ Widget appBar(context, key, seeAll) {
                       },
                       icon: const Icon(Icons.person),
                     )
-                  : Container(color: Colors.transparent,),
+                  : Container(
+                      color: Colors.transparent,
+                    ),
             ),
             const SizedBox(
               width: 10,

@@ -11,10 +11,8 @@ import '../../../../../model/data/task.dart';
 import '../../../../../model/provider/model_pv.dart';
 
 Widget tasksList(context, bool allList) {
-
-
   final viewModel = Provider.of<MainProvider>(context);
-  Timer(Duration(seconds: 2), () {
+  Timer(const Duration(seconds: 2), () {
     viewModel.isLoading = false;
   });
   return SizedBox(
@@ -27,16 +25,8 @@ Widget tasksList(context, bool allList) {
             builder:
                 (BuildContext context, AsyncSnapshot<List<Task>> snapshot) {
               return snapshot.data != null
-                  ? taskListDoDataItem(allList,snapshot)
+                  ? taskListDoDataItem(allList, snapshot)
                   : taskListNotData(allList);
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  CircularProgressIndicator(),
-                ],
-              );
             });
-
       }));
 }
