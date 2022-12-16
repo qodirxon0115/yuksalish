@@ -22,7 +22,6 @@ class _KatalogPageState extends State<KatalogPage> {
           height: 45,
           margin: const EdgeInsets.only(right: 10, left: 10),
           child: AnimSearchBar(
-
             // rtl: true,
             width: 400,
             textController: textController,
@@ -31,8 +30,6 @@ class _KatalogPageState extends State<KatalogPage> {
                 textController.clear();
               });
             },
-
-
           ),
         ),
         Expanded(

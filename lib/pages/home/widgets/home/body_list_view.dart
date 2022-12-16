@@ -3,7 +3,6 @@ import 'package:yuksalish_1/pages/home/widgets/home/task_list_widget/task_list.d
 
 import '../../../admin_pages/admin_panel_home.dart';
 
-
 Widget bodyListView(context) {
   return Column(
     children: [
@@ -76,10 +75,10 @@ Widget bodyListView(context) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) =>
-                        const AdminPanelListTask(true
-                          // dateController: dateController,
-                          // nameController: nameController,
-                        ),
+                            const AdminPanelListTask(true
+                                // dateController: dateController,
+                                // nameController: nameController,
+                                ),
                       ),
                     );
                   },
@@ -95,10 +94,9 @@ Widget bodyListView(context) {
           const SizedBox(
             height: 20,
           ),
-          tasksList(context,false),
+          tasksList(context, false),
         ],
       ),
     ],
   );
 }
-
