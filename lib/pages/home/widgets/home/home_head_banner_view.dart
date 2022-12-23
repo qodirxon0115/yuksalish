@@ -53,8 +53,44 @@ Widget homeBannerView(context) {
                                               ],
                                             ),
                                             child: Center(
-                                                child: Text(
-                                                    item.title.toString())),
+                                                child: Column(
+                                                  mainAxisAlignment: MainAxisAlignment.end,
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        Expanded(
+                                                          child: Column(
+                                                            
+                                                            children: [
+                                                              Center(
+                                                                child: Padding(
+                                                                  padding: const EdgeInsets.only(left: 15.0,right: 12,bottom: 15),
+
+                                                                  child: Text(
+                                                                      item.title.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                                                                ),
+                                                              ),
+                                                              Center(
+                                                                child: Text(
+                                                                      item.title.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+
+                                                        Expanded(
+                                                          child: Center(
+                                                            child: Padding(
+                                                              padding: const EdgeInsets.only(left: 15.0,right: 12,bottom: 15),
+                                                              child: Text(
+                                                                  item.price.toString(),style: TextStyle(fontWeight: FontWeight.w500,fontSize: 16),),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                )),
                                           ),
                                         )
                                         .toList(),

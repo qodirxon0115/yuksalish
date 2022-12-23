@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yuksalish_1/model/provider/model_pv.dart';
@@ -7,7 +9,6 @@ import 'package:yuksalish_1/pages/sign/signin_page.dart';
 
 import '../../../admin_pages/admin_panel_home.dart';
 import 'show_modal_sheet.dart';
-
 
 class CustomScroll extends ScrollBehavior {
   @override
@@ -39,44 +40,35 @@ class PersistentHeader extends SliverPersistentHeaderDelegate {
   });
 
   @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    List<Color> listColor = [
-      Colors.transparent,
-      Colors.transparent,
-    ];
-    return Container(
-      width: width ?? double.infinity,
-      height: height ?? 80,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topRight: Radius.elliptical(topRight ?? 0, topRight ?? 0),
-          topLeft: Radius.elliptical(topRight ?? 0, topRight ?? 0),
+  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
 
-        ),
-        gradient: LinearGradient(
-          begin: Alignment.bottomCenter,
-          end: Alignment.topCenter,
-          colors: colors ?? listColor,
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          widget,
-          const SizedBox(
-            height: 5,
-          )
-        ],
-      ),
-    );
+
+    return ClipRect(
+        child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 30.0, sigmaY: 10.0),
+            child: Container(
+              width: width ?? double.infinity,
+              height: height ?? 110,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.elliptical(topRight ?? 0, topRight ?? 0),
+                    topLeft: Radius.elliptical(topRight ?? 0, topRight ?? 0),
+                  ),
+                  color: Colors.black12.withOpacity(0.3)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  widget,
+                ],
+              ),
+            )));
   }
 
   @override
-  double get maxExtent => height ?? 80;
+  double get maxExtent => height ?? 110;
 
   @override
-  double get minExtent => height ?? 80;
+  double get minExtent => height ?? 110;
 
   @override
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
@@ -84,54 +76,64 @@ class PersistentHeader extends SliverPersistentHeaderDelegate {
   }
 }
 
-Widget appBar(context, key,seeAll) {
+Widget appBar(context, key, seeAll) {
   final viewModel = Provider.of<MainProvider>(context);
   return SliverPersistentHeader(
     pinned: true,
     delegate: PersistentHeader(
-      colors: [
-        Colors.black12,
-        Colors.black12,
-      ],
-      widget: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: <Widget>[
-          const SizedBox(
-            width: 10,
-          ),
-          IconButton(
-            onPressed: () {
-              seeAll ?
-              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (BuildContext context)=> HomePage())):
-              // Drawer
-              showModalSheetWidget(
-                  context, viewModel.listButton(const SignIn(), context, "SignIn"));
-            },
-            icon: seeAll ?  const Icon(Icons.arrow_back) : const Icon(Icons.menu),
-          ),
-          const Spacer(),
-          GestureDetector(
-            onLongPress: () {
-              viewModel.longPressed();
-            },
-            child: !seeAll ? IconButton(
+
+      widget:  Container(
+  color: Colors.transparent,
+  child:  Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            const SizedBox(
+              width: 10,
+            ),
+            IconButton(
               onPressed: () {
-                viewModel.isLongPressed != true
-                    ? showModalSheetWidget(
-                        context, ModalSheetListAccount.uiWidgetList)
-                    : Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => AdminPanelCreateTask()));
-                viewModel.isLongPressed = false;
+                print(MediaQuery.of(context).size.height);
+                seeAll
+                    ? Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (BuildContext context) => HomePage()))
+                    :
+                    // Drawer
+                    showModalSheetWidget(
+                        context,
+                        viewModel.listButton(
+                            const SignIn(), context, "SignIn"));
               },
-              icon: const Icon(Icons.person),
-            ) : Container(),
-          ),
-          const SizedBox(
-            width: 10,
-          ),
-        ],
+              icon: seeAll
+                  ? const Icon(Icons.arrow_back)
+                  : const Icon(Icons.menu),
+            ),
+            const Spacer(),
+            GestureDetector(
+              onLongPress: () {
+                viewModel.longPressed();
+              },
+              child: !seeAll
+                  ? IconButton(
+                      onPressed: () {
+                        viewModel.isLongPressed != true
+                            ? showModalSheetWidget(
+                                context, ModalSheetListAccount.uiWidgetList)
+                            : Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        AdminPanelCreateTask()));
+                        viewModel.isLongPressed = false;
+                      },
+                      icon: const Icon(Icons.person),
+                    )
+                  : Container(color: Colors.transparent,),
+            ),
+            const SizedBox(
+              width: 10,
+            ),
+          ],
+        ),
       ),
     ),
   );
