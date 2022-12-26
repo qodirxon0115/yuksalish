@@ -10,15 +10,15 @@ Widget homeWidget(scrollController, widgetViewController, key, context) {
     scrollBehavior: CustomScroll(),
     controller: scrollController,
     slivers: [
-      appBar(context, key,seeAll),
-      body(widgetViewController,context),
+      appBar(context, key,seeAll,true),
+      body(widgetViewController,context,key),
     ],
   );
 }
 
 
 
-Widget body(widgetViewController,context) {
+Widget body(widgetViewController,context,key) {
 
   return SliverList(
     delegate: SliverChildListDelegate([
@@ -30,7 +30,7 @@ Widget body(widgetViewController,context) {
           const SizedBox(
             height: 20,
           ),
-          bodyListView(context),
+          bodyListView(context,key),
         ],
       ),
     ]),

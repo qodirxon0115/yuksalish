@@ -40,9 +40,8 @@ class PersistentHeader extends SliverPersistentHeaderDelegate {
   });
 
   @override
-  Widget build(BuildContext context, double shrinkOffset, bool overlapsContent) {
-
-
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
     return ClipRect(
         child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 30.0, sigmaY: 10.0),
@@ -54,7 +53,7 @@ class PersistentHeader extends SliverPersistentHeaderDelegate {
                     topRight: Radius.elliptical(topRight ?? 0, topRight ?? 0),
                     topLeft: Radius.elliptical(topRight ?? 0, topRight ?? 0),
                   ),
-                  color: Colors.black12.withOpacity(0.3)),
+                  color: Colors.indigo.withOpacity(0.3)),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -76,59 +75,80 @@ class PersistentHeader extends SliverPersistentHeaderDelegate {
   }
 }
 
-Widget appBar(context, key, seeAll) {
+Widget appBar(context, key, seeAll, showIcon) {
   final viewModel = Provider.of<MainProvider>(context);
   return SliverPersistentHeader(
     pinned: true,
     delegate: PersistentHeader(
-
-      widget:  Container(
-  color: Colors.transparent,
-  child:  Row(
+      widget: Container(
+        color: Colors.transparent,
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             const SizedBox(
               width: 10,
             ),
-            IconButton(
-              onPressed: () {
-                print(MediaQuery.of(context).size.height);
-                seeAll
-                    ? Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (BuildContext context) => HomePage()))
-                    :
-                    // Drawer
-                    showModalSheetWidget(
-                        context,
-                        viewModel.listButton(
-                            const SignIn(), context, "SignIn"));
-              },
-              icon: seeAll
-                  ? const Icon(Icons.arrow_back)
-                  : const Icon(Icons.menu),
-            ),
+            showIcon
+                ? IconButton(
+                    onPressed: () {
+                      // print(MediaQuery.of(context).size.height);
+                      seeAll
+                          ? Navigator.of(context).pushReplacement(
+                              MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      const HomePage()))
+                          :
+                          // Drawer
+                          showModalSheetWidget(
+                              context,
+                              viewModel.listButton(
+                                  const SignIn(), context, "SignIn"),
+                            );
+                    },
+                    icon: seeAll
+                        ? const Icon(Icons.arrow_back)
+                        : Image.asset(
+                            "assets/images/logo_ic.png",
+                            fit: BoxFit.fitWidth,
+                          ),
+                  )
+                : const Center(
+                    child: Padding(
+                    padding: EdgeInsets.all(12.0),
+                    child: Text(
+                      "Savatcha",
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                      ),
+                    ),
+                  )),
             const Spacer(),
-            GestureDetector(
-              onLongPress: () {
-                viewModel.longPressed();
-              },
-              child: !seeAll
-                  ? IconButton(
-                      onPressed: () {
-                        viewModel.isLongPressed != true
-                            ? showModalSheetWidget(
-                                context, ModalSheetListAccount.uiWidgetList)
-                            : Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        AdminPanelCreateTask()));
-                        viewModel.isLongPressed = false;
-                      },
-                      icon: const Icon(Icons.person),
-                    )
-                  : Container(color: Colors.transparent,),
-            ),
+            showIcon
+                ? GestureDetector(
+                    onLongPress: () {
+                      viewModel.longPressed();
+                    },
+                    child: !seeAll
+                        ? IconButton(
+                            onPressed: () {
+                              viewModel.isLongPressed != true
+                                  ? showModalSheetWidget(context,
+                                      ModalSheetListAccount.uiWidgetList)
+                                  : Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (BuildContext context) =>
+                                              AdminPanelCreateTask()));
+                              viewModel.isLongPressed = false;
+                            },
+                            icon: const Icon(Icons.person),
+                          )
+                        : Container(
+                            color: Colors.transparent,
+                          ),
+                  )
+                : Container(),
             const SizedBox(
               width: 10,
             ),
@@ -138,3 +158,5 @@ Widget appBar(context, key, seeAll) {
     ),
   );
 }
+
+
