@@ -4,7 +4,7 @@ import 'package:yuksalish_1/pages/home/widgets/home/task_list_widget/task_list.d
 import '../../../admin_pages/admin_panel_home.dart';
 
 
-Widget bodyListView(context) {
+Widget bodyListView(context,key) {
   return Column(
     children: [
       SizedBox(
@@ -76,7 +76,7 @@ Widget bodyListView(context) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) =>
-                        const AdminPanelListTask(true
+                         AdminPanelListTask(true,keyOne: key,
                           // dateController: dateController,
                           // nameController: nameController,
                         ),

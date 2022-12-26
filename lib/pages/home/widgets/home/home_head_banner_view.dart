@@ -47,8 +47,7 @@ Widget homeBannerView(context) {
                                                       .withOpacity(0.3),
                                                   spreadRadius: 1,
                                                   blurRadius: 5,
-                                                  offset: Offset(0,
-                                                      5), // changes x,y position of shadow
+                                                  offset: const Offset(0,5), // changes x,y position of shadow
                                                 ),
                                               ],
                                             ),
@@ -70,10 +69,10 @@ Widget homeBannerView(context) {
                                                                       item.title.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
                                                                 ),
                                                               ),
-                                                              Center(
-                                                                child: Text(
-                                                                      item.title.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
-                                                              ),
+                                                              // Center(
+                                                              //   child: Text(
+                                                              //         item.title.toString(),style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                                                              // ),
                                                             ],
                                                           ),
                                                         ),
@@ -120,34 +119,11 @@ Widget homeBannerView(context) {
                               ),
                             ),
 
-                            //   Expanded(
-                            //   child: CarouselSlider(
-                            //
-                            //           items: snapshot.data
-                            //               ?.map((item) =>
-                            //               Expanded(
-                            //                   child:  Card(
-                            //                 child: Container(
-                            //                   width: 2000,
-                            //             decoration: BoxDecoration(image: DecorationImage(fit: BoxFit.cover,image: AssetImage("assets/images/image_1.png"))),
-                            //                       child: Center(child: Text(item.title.toString())),
-                            //                     ),
-                            //               )))
-                            //               .toList(),
-                            //           options: CarouselOptions(
-                            //
-                            //             autoPlay: true,
-                            //             enlargeCenterPage: true,
-                            //             aspectRatio: 3.0
-                            //           ),
-                            //
-                            //     ),
-                            // ),
                           ],
                         )
                       :  Container(
                     padding:
-                    EdgeInsets.symmetric(horizontal: 20),
+                    const EdgeInsets.symmetric(horizontal: 20),
                     width: double.infinity,
                     height: 135,
                     margin: const EdgeInsets.all(8),
@@ -176,95 +152,10 @@ Widget homeBannerView(context) {
                         )),
                   );
 
-                  //   Column(
-                  //   crossAxisAlignment: CrossAxisAlignment.start,
-                  //   children: [
-                  //     const SizedBox(
-                  //       height: 12,
-                  //     ),
-                  //     Expanded(
-                  //       child: Container(
-                  //
-                  //         decoration: BoxDecoration(
-                  //             color: Colors.white,
-                  //             borderRadius: BorderRadius.circular(18)),
-                  //         child: Image.asset(
-                  //           "assets/images/image_1.png",
-                  //         ),
-                  //       ),
-                  //     ),
-                  //     Row(
-                  //       children: [
-                  //         Column(
-                  //           children: [
-                  //             Container(
-                  //                 child: Text(
-                  //                     snapshot.data![index].title ?? "")),
-                  //             Container(
-                  //                 child: Text(
-                  //                     snapshot.data![index].description ?? "")),
-                  //           ],
-                  //         ),
-                  //         const Spacer(),
-                  //         Column(
-                  //           children: [
-                  //             Container(
-                  //                 child: Text(
-                  //                     snapshot.data![index].category ?? "")),
-                  //             Container(
-                  //                 child: Text(
-                  //                     snapshot.data![index].characteristic ?? "")),
-                  //           ],
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ],
-                  // )
                 }
-                // itemCount: snapshot.data?.length ?? 0,
                 );
-            //     : Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   crossAxisAlignment: CrossAxisAlignment.start,
-            //   children: const [
-            //     CircularProgressIndicator(),
-            //   ],
-            // );
           }),
 
-          // PageView.builder(
-          //     controller: PageController(viewportFraction: 0.7),
-          //     physics: const BouncingScrollPhysics(),
-          //     onPageChanged: (index) {
-          //       viewModel.isSelected(index);
-          //     },
-          //     scrollDirection: Axis.horizontal,
-          //     itemCount: itemLength,
-          //     itemBuilder: (BuildContext context, index) {
-          //       // index != null ? viewModel.pageIndex : index = viewModel.pageIndex;
-          //       return
-          //
-          //       //   Column(
-          //       //   crossAxisAlignment: CrossAxisAlignment.start,
-          //       //   mainAxisAlignment: MainAxisAlignment.start,
-          //       //   children: [
-          //       //     Expanded(
-          //       //       child: Container(
-          //       //         height: 170,
-          //       //         width: MediaQuery.of(context).size.width * 0.62,
-          //       //         margin: const EdgeInsets.only(
-          //       //           right: 5,
-          //       //         ),
-          //       //         child: const Card(
-          //       //           child: Image(
-          //       //             image: AssetImage("assets/images/image_1.png"),
-          //       //           ),
-          //       //         ),
-          //       //       ),
-          //       //     ),
-          //       //   ],
-          //       // );
-          //     }),
         ),
         Center(
           child: Container(

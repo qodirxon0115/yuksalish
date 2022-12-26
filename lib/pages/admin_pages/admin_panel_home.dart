@@ -12,8 +12,9 @@ import '../home/widgets/home/task_list_widget/task_list.dart';
 
 class AdminPanelListTask extends StatefulWidget {
   final bool allList;
+  final GlobalKey<ScaffoldState>? keyOne;
 
-  const AdminPanelListTask(this.allList, {Key? key}) : super(key: key);
+   const AdminPanelListTask(this.allList, {Key? key, this.keyOne,}) : super(key: key);
 
   @override
   State<AdminPanelListTask> createState() => _AdminPanelListTaskState();
@@ -33,7 +34,7 @@ class _AdminPanelListTaskState extends State<AdminPanelListTask> {
     await DatabaseHelper.intance.delete(mainProvider.task.id!);
     updateTaskList(context);
   }
-  final GlobalKey<ScaffoldState> _key = GlobalKey();
+  // final GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
     bool seeAll = true;
@@ -42,7 +43,7 @@ class _AdminPanelListTaskState extends State<AdminPanelListTask> {
       body: CustomScrollView(
 
         slivers: [
-          appBar(context, _key,seeAll),
+          appBar(context, widget.keyOne,seeAll,true),
           SliverList(
 
             delegate: SliverChildListDelegate(
@@ -59,8 +60,9 @@ class _AdminPanelListTaskState extends State<AdminPanelListTask> {
 
 class AdminPanelCreateTask extends StatefulWidget {
   Task? task;
+  final GlobalKey<ScaffoldState>? keyOne;
 
-  AdminPanelCreateTask({this.task, Key? key}) : super(key: key);
+  AdminPanelCreateTask({this.task, Key? key, this.keyOne}) : super(key: key);
 
   @override
   State<AdminPanelCreateTask> createState() => _AdminPanelCreateTaskState();
@@ -222,10 +224,7 @@ class _AdminPanelCreateTaskState extends State<AdminPanelCreateTask> {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (BuildContext context) =>
-                              const AdminPanelListTask(true
-                                  // dateController: dateController,
-                                  // nameController: nameController,
-                                  ),
+                               AdminPanelListTask(true,keyOne: widget.keyOne,),
                         ),
                       );
                     });
