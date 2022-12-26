@@ -15,6 +15,7 @@ class _KatalogPageState extends State<KatalogPage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
         children: [
@@ -26,7 +27,7 @@ class _KatalogPageState extends State<KatalogPage> {
                   filter: ImageFilter.blur(sigmaX: 30.0, sigmaY: 10.0),
                   child: Container(
                     width: double.infinity,
-                    height: 110,
+                    height: size.height * 0.2,
                     decoration: BoxDecoration(
                         borderRadius: const BorderRadius.only(
                           topRight: Radius.elliptical(0, 0),
@@ -37,6 +38,8 @@ class _KatalogPageState extends State<KatalogPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        Text("Kategoriyalar",style: TextStyle(fontWeight: FontWeight.w500,fontSize: 20),),
+                        SizedBox(height: 6,),
                         Container(
                           color: Colors.transparent,
                           height: 45,
