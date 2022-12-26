@@ -6,8 +6,13 @@ import 'package:flutter/material.dart';
 import '../data/task.dart';
 
 class MainProvider extends ChangeNotifier {
-
   late Task task;
+
+  void deviceSize(context){
+    final size = MediaQuery.of(context).size;
+
+    notifyListeners();
+  }
 
   //homeheadbanner widget da carousel da tanlangani aniqlab turuvchi o'zgaruvchi
   int pageIndex = 0;

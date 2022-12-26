@@ -67,34 +67,40 @@ List<BottomNavyBarItem> NavigationBatItems =  [
   BottomNavyBarItem(
     icon: const Icon(Icons.home_outlined),
     title: const Text('Bosh sahifa'),
-    activeColor: Colors.black,
+    activeColor: Colors.indigo.withOpacity(0.8),
   ),
   BottomNavyBarItem(
-      icon: const Icon(Icons.apps_outlined),
+      icon: Image.asset("assets/images/icons/apps_ic.png",width: 28,height: 22,color: Colors.indigo,),
       title: const Text('Katalog'),
-      activeColor: Colors.black
+    activeColor: Colors.indigo.withOpacity(0.8),
+
   ),
   BottomNavyBarItem(
       icon: const Icon(Icons.shopping_cart),
       title: const Text('Savatcha'),
-      activeColor: Colors.black
+    activeColor: Colors.indigo.withOpacity(0.8),
+
   ),
   BottomNavyBarItem(
       icon: const Icon(Icons.monetization_on_outlined),
       title: const Text("To'lov"),
-      activeColor: Colors.black
+    activeColor: Colors.indigo.withOpacity(0.8),
+
   ),
 ];
     return Scaffold(
+
       key: _key,
 
       bottomNavigationBar: BottomNavyBar(
+
         selectedIndex: _selectedIndex,
         showElevation: true,   // use this to remove appBar's elevation
         onItemSelected: (index) => setState(() {
           _selectedIndex = index;
           _pageController.animateToPage(index,
-              duration: const Duration(milliseconds: 300), curve: Curves.ease);
+
+              duration: const Duration(milliseconds: 300), curve: Curves.ease,);
         }),
         items: NavigationBatItems,
       ),
@@ -108,8 +114,8 @@ List<BottomNavyBarItem> NavigationBatItems =  [
         },
         children: ListPage,
       ),
-      drawer: Drawer(),
-      endDrawer: Container(),
+      // drawer: Drawer(),
+      // endDrawer: Container(),
     );
   }
 }

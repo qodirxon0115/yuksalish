@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:yuksalish_1/pages/home/widgets/home/custom_appBar.dart';
+import 'package:yuksalish_1/pages/home/widgets/home/appbar/custom_appBar.dart';
 
 import '../../model/provider/model_pv.dart';
 
@@ -20,43 +20,52 @@ class _SavatchaPageState extends State<SavatchaPage> {
     List<String> stringList = ["Kreditga olish", "Sotib Olish"];
     final viewModel = Provider.of<MainProvider>(context);
     bool showIcon = false;
+    final size = MediaQuery.of(context).size;
     return CustomScrollView(
       slivers: [
-        appBar(context, keyOne, seeAll,showIcon),
+        appBar(context, keyOne, seeAll, showIcon),
         SliverList(
           delegate: SliverChildListDelegate([
-            Container(
-              height: 55,
-              margin: const EdgeInsets.only(top: 8.0, left: 70, right: 70),
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.05),
-                borderRadius: BorderRadius.circular(15)
-              ),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ...List.generate(
-                      2,
-                      (index) => InkWell(
-                            onTap: () {
-                              viewModel.isSelectedIndex(index);
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SelectContainerIndicator(
-                                  viewModel.pageIndexCount == index
-                                      ? true
-                                      : false,
-                                  child: stringList[index],
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  height: size.height * 0.076,
+                  width: size.width * 0.67,
+                  margin: const EdgeInsets.only(
+                    top: 8.0,
+                  ),
+                  decoration: BoxDecoration(
+                      color: Colors.black.withOpacity(0.05),
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ...List.generate(
+                          2,
+                          (index) => InkWell(
+                                onTap: () {
+                                  viewModel.isSelectedIndex(index);
+                                },
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    SelectContainerIndicator(
+                                      viewModel.pageIndexCount == index
+                                          ? true
+                                          : false,
+                                      child: stringList[index],
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                          ))
-                ],
-              ),
+                              ))
+                    ],
+                  ),
+                ),
+              ],
             ),
           ]),
         ),
@@ -104,12 +113,13 @@ class SelectContainerIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Center(
       child: AnimatedContainer(
         duration: Duration(milliseconds: 450),
         margin: EdgeInsets.symmetric(horizontal: 4.0),
-        width: isActive ? 150 : 100,
-        height: isActive ? 45 : 35,
+        width: isActive ? size.width * 0.34 : size.width * 0.28,
+        height: isActive ? size.height * 0.06 : size.height * 0.05,
         curve: Curves.linearToEaseOut,
         decoration: BoxDecoration(
           color: isActive ? Colors.indigo.withOpacity(0.3) : Colors.white,

@@ -26,7 +26,7 @@ class _KatalogPageState extends State<KatalogPage> {
                   filter: ImageFilter.blur(sigmaX: 30.0, sigmaY: 10.0),
                   child: Container(
                     width: double.infinity,
-                    height: 110,
+                    height: MediaQuery.of(context).size.height * 0.2,
                     decoration: BoxDecoration(
                         borderRadius: const BorderRadius.only(
                           topRight: Radius.elliptical(0, 0),
@@ -37,6 +37,12 @@ class _KatalogPageState extends State<KatalogPage> {
                       mainAxisAlignment: MainAxisAlignment.end,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        Text(
+                          "Kategoriyalar",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(height: 5,),
                         Container(
                           color: Colors.transparent,
                           height: 45,
@@ -79,7 +85,8 @@ class _KatalogPageState extends State<KatalogPage> {
                           ),
                           Text(
                             listTitle[index],
-                            style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w500),
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w500),
                           ),
                           const Spacer(),
                           Container(

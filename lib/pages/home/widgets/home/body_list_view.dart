@@ -3,57 +3,51 @@ import 'package:yuksalish_1/pages/home/widgets/home/task_list_widget/task_list.d
 
 import '../../../admin_pages/admin_panel_home.dart';
 
-
-Widget bodyListView(context,key) {
+Widget bodyListView(context, key) {
+  final size = MediaQuery.of(context).size;
   return Column(
     children: [
       SizedBox(
-        height: 40,
+        height: size.height * 0.075,
+
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Spacer(),
             Expanded(
-              flex: 6,
-              child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 3, color: Colors.red),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      " % Chegirmalar ",
-                      style: TextStyle(
-                          color: Colors.red, fontWeight: FontWeight.bold),
+              flex: 10,
+              child: 
+              InkWell(
+                onTap: (){},
+                child: Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(width: 3, color: Colors.indigo),
+                      borderRadius: BorderRadius.circular(8),
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Colors.white12,
+                          Colors.indigo,
+                        ],
+                      ),
                     ),
-                  )),
-            ),
-            const Spacer(),
-            Expanded(
-              flex: 6,
-              child: Container(
-                  decoration: BoxDecoration(
-                    border: Border.all(width: 3, color: Colors.green),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      " Muddatli to'lov ",
-                      style: TextStyle(
-                          color: Colors.green, fontWeight: FontWeight.bold),
+                    child: const Center(
+                      child:  Text(
+                          "Skoringdan o'tish",
+                          style: TextStyle(
+                              color: Colors.indigo, fontWeight: FontWeight.bold),
+                        ),
                     ),
-                  )),
-            ),
+                    ),
+              )),
+
             const Spacer(),
           ],
         ),
       ),
 
-      const SizedBox(
-        height: 10,
-      ),
+      //
 
       // Column(
       //   children: [
@@ -64,10 +58,10 @@ Widget bodyListView(context,key) {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   " Kategoriyalar ",
                   style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.indigo.withOpacity(0.8),
                       fontWeight: FontWeight.bold,
                       fontSize: 20),
                 ),
@@ -75,18 +69,18 @@ Widget bodyListView(context,key) {
                   onPressed: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                         AdminPanelListTask(true,keyOne: key,
+                        builder: (BuildContext context) => AdminPanelListTask(
+                          true, keyOne: key,
                           // dateController: dateController,
                           // nameController: nameController,
                         ),
                       ),
                     );
                   },
-                  child: const Text(
+                  child:  Text(
                     " Barchasini ko'rish ",
                     style: TextStyle(
-                        color: Colors.blue, fontWeight: FontWeight.bold),
+                        color: Colors.indigo.withOpacity(0.8), fontWeight: FontWeight.bold,fontSize: 16),
                   ),
                 )
               ],
@@ -95,10 +89,9 @@ Widget bodyListView(context,key) {
           const SizedBox(
             height: 20,
           ),
-          tasksList(context,false),
+          tasksList(context, false),
         ],
       ),
     ],
   );
 }
-

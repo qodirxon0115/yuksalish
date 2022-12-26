@@ -12,7 +12,7 @@ Widget homeBannerView(context) {
 
   return Container(
     height: MediaQuery.of(context).size.height * 0.35,
-    color: Colors.black12,
+    color: Colors.indigo.withOpacity(0.3),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
