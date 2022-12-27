@@ -206,7 +206,7 @@ class Indicator extends StatelessWidget {
       width: isActive ? 22.0 : 8.0,
       height: 8.0,
       decoration: BoxDecoration(
-        color: isActive ? Colors.red : Colors.white,
+        color: isActive ? Colors.indigo : Colors.white,
         borderRadius: BorderRadius.circular(8.0),
       ),
     );

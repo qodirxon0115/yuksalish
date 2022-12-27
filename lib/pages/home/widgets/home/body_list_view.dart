@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shimmer_animation/shimmer_animation.dart';
 import 'package:yuksalish_1/pages/home/widgets/home/task_list_widget/task_list.dart';
 
 import '../../../admin_pages/admin_panel_home.dart';
@@ -27,17 +28,32 @@ Widget bodyListView(context, key) {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Colors.white12,
+                          Colors.indigo,
                           Colors.indigo,
                         ],
                       ),
                     ),
-                    child: const Center(
-                      child:  Text(
-                          "Skoringdan o'tish",
-                          style: TextStyle(
-                              color: Colors.indigo, fontWeight: FontWeight.bold),
-                        ),
+                    child: Shimmer(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Center(
+                            child: Icon(Icons.speed,color: Colors.white,),
+                          ),
+
+                          Center(
+                            child:  Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text(
+                                  "Skoringdan o'tish",
+                                  style: TextStyle(
+                                      color: Colors.white, fontWeight: FontWeight.bold),
+                                ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                     ),
               )),
@@ -70,7 +86,7 @@ Widget bodyListView(context, key) {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (BuildContext context) => AdminPanelListTask(
-                          true, keyOne: key,
+                          false, keyOne: key,
                           // dateController: dateController,
                           // nameController: nameController,
                         ),
