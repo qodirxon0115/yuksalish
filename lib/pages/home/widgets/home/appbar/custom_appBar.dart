@@ -94,185 +94,191 @@ Widget appBar(context, key, seeAll, showIcon) {
     "Manzil",
   ];
   return SliverPersistentHeader(
+floating: true,
     pinned: true,
     delegate: PersistentHeader(
-      widget: Container(
-        child: !seeAll
-            ? showIcon
-                ? Row(
-                    children: <Widget>[
-                      Row(
-                        children: [
-                          Column(
-                            children: [
-                              Image.asset(
-                                "assets/images/logo_ic_home.png",
-                                // height: 50,
-                                width: 110,
-                                color: Colors.indigo,
-                              ),
-                              const SizedBox(
-                                height: 8,
-                              )
-                            ],
-                          ),
-                          const SizedBox(
-                            width: 8,
-                          ),
-                          const Text(
-                            "Yuksalish",
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 22),
-                          )
-                        ],
-                      ),
-                      const Spacer(),
-                      showIcon
-                          ? GestureDetector(
-                              onLongPress: () {
-                                viewModel.longPressed();
-                              },
-                              child: !seeAll
-                                  ? IconButton(
-                                      onPressed: () {
-                                        viewModel.isLongPressed != true
-                                            ? showModalSheetWidget(
-                                                context,
-                                                ListView.builder(
-                                                  physics:
-                                                      NeverScrollableScrollPhysics(),
-                                                  itemCount: listTitle.length,
-                                                  itemBuilder:
-                                                      (BuildContext context,
-                                                              int index) =>
-                                                          Container(
-                                                    decoration: BoxDecoration(
-                                                      color: Colors.indigo
-                                                          .withOpacity(0.1),
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15),
-                                                    ),
-                                                    // height: 65,
-                                                    margin:
-                                                        const EdgeInsets.only(
-                                                            top: 5,
-                                                            bottom: 5,
-                                                            right: 12,
-                                                            left: 12),
-                                                    child: InkWell(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              15),
-                                                      onTap: () {},
-                                                      child: Row(
-                                                        children: [
-                                                          const SizedBox(
-                                                            width: 12,
-                                                          ),
-                                                          Text(
-                                                            "${listTitle[index]}",
-                                                            style: const TextStyle(
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
-                                                          ),
-                                                          const Spacer(),
-                                                          Text(
-                                                            "${listItem[index]}",
-                                                            style: const TextStyle(
-                                                                fontSize: 18,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500),
-                                                          ),
-                                                          Container(
-                                                            height:
-                                                                size.height *
-                                                                    0.08,
-                                                            decoration:
-                                                                BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          50),
-                                                              color: Colors
-                                                                  .indigo
-                                                                  .withOpacity(
-                                                                      0.2),
+
+      widget:
+      SingleChildScrollView(
+        // physics: NeverScrollableScrollPhysics(),
+        child: Container(
+          child: !seeAll
+              ? showIcon
+                  ? Row(
+                      children: <Widget>[
+                        Row(
+                          children: [
+                            Column(
+                              children: [
+                                Image.asset(
+                                  "assets/images/logo_ic_home.png",
+                                  // height: 50,
+                                  width: 110,
+                                  color: Colors.indigo,
+                                ),
+                                const SizedBox(
+                                  height: 8,
+                                )
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            const Text(
+                              "Yuksalish",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 22),
+                            )
+                          ],
+                        ),
+                        const Spacer(),
+                        showIcon
+                            ? GestureDetector(
+                                onLongPress: () {
+                                  viewModel.longPressed();
+                                },
+                                child: !seeAll
+                                    ? IconButton(
+                                        onPressed: () {
+                                          viewModel.isLongPressed != true
+                                              ? showModalSheetWidget(
+                                                  context,
+                                                  ListView.builder(
+                                                    physics:
+                                                        NeverScrollableScrollPhysics(),
+                                                    itemCount: listTitle.length,
+                                                    itemBuilder:
+                                                        (BuildContext context,
+                                                                int index) =>
+                                                            Container(
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.indigo
+                                                            .withOpacity(0.1),
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                15),
+                                                      ),
+                                                      // height: 65,
+                                                      margin:
+                                                          const EdgeInsets.only(
+                                                              top: 5,
+                                                              bottom: 5,
+                                                              right: 12,
+                                                              left: 12),
+                                                      child: InkWell(
+                                                        borderRadius:
+                                                            BorderRadius.circular(
+                                                                15),
+                                                        onTap: () {},
+                                                        child: Row(
+                                                          children: [
+                                                            const SizedBox(
+                                                              width: 12,
                                                             ),
-                                                            margin:
-                                                                const EdgeInsets
-                                                                    .all(8.0),
-                                                          ),
-                                                          const SizedBox(
-                                                            width: 12,
-                                                          ),
-                                                        ],
+                                                            Text(
+                                                              "${listTitle[index]}",
+                                                              style: const TextStyle(
+                                                                  fontSize: 18,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500),
+                                                            ),
+                                                            const Spacer(),
+                                                            Text(
+                                                              "${listItem[index]}",
+                                                              style: const TextStyle(
+                                                                  fontSize: 18,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500),
+                                                            ),
+                                                            Container(
+                                                              height:
+                                                                  size.height *
+                                                                      0.08,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            50),
+                                                                color: Colors
+                                                                    .indigo
+                                                                    .withOpacity(
+                                                                        0.2),
+                                                              ),
+                                                              margin:
+                                                                  const EdgeInsets
+                                                                      .all(8.0),
+                                                            ),
+                                                            const SizedBox(
+                                                              width: 12,
+                                                            ),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                              )
-                                            : Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (BuildContext
-                                                            context) =>
-                                                        AdminPanelCreateTask()));
-                                        viewModel.isLongPressed = false;
-                                      },
-                                      icon: const Icon(
-                                        Icons.person,
-                                        color: Colors.indigo,
+                                                )
+                                              : Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (BuildContext
+                                                              context) =>
+                                                          AdminPanelCreateTask()));
+                                          viewModel.isLongPressed = false;
+                                        },
+                                        icon: const Icon(
+                                          Icons.person,
+                                          color: Colors.indigo,
+                                        ),
+                                      )
+                                    : Container(
+                                        color: Colors.transparent,
                                       ),
-                                    )
-                                  : Container(
-                                      color: Colors.transparent,
-                                    ),
-                            )
-                          : Container(),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                    ],
-                  )
-                : const Center(
-                    child: Padding(
-                    padding: EdgeInsets.all(12.0),
-                    child: Text(
-                      "Savatcha",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 24,
-                      ),
-                    ),
-                  ))
-            : Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  IconButton(
-                    onPressed: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (BuildContext context) => HomePage()));
-                    },
-                    icon: Icon(Icons.arrow_back),
-                  ),
-                  Spacer(
-                    flex: 4,
-                  ),
-                  Center(
+                              )
+                            : Container(),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                      ],
+                    )
+                  : const Center(
+                      child: Padding(
+                      padding: EdgeInsets.all(12.0),
                       child: Text(
-                    "Barchasini ko'rish",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  )),
-                  Spacer(
-                    flex: 5,
-                  ),
-                ],
-              ),
+                        "Savatcha",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24,
+                        ),
+                      ),
+                    ))
+              : Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (BuildContext context) => HomePage()));
+                      },
+                      icon: Icon(Icons.arrow_back),
+                    ),
+                    Spacer(
+                      flex: 4,
+                    ),
+                    Center(
+                        child: Text(
+                      "Barchasini ko'rish",
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    )),
+                    Spacer(
+                      flex: 5,
+                    ),
+                  ],
+                ),
+        ),
       ),
       context: context,
     ),

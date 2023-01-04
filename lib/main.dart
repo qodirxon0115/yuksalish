@@ -6,8 +6,14 @@ import 'package:yuksalish_1/pages/home/home_page.dart';
 import 'package:yuksalish_1/pages/sign/signup_page.dart';
 import 'package:yuksalish_1/pages/splash/shimer_page.dart';
 import 'package:yuksalish_1/pages/sign/signin_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
+ 
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent, // transparent status bar

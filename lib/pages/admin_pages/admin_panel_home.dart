@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:yuksalish_1/pages/home/widgets/home/appbar/custom_appBar.dart';
+import 'package:yuksalish_1/pages/home/widgets/home/task_list_widget/product_list_firebase.dart';
 import '../../model/data/database_helpaer.dart';
 import '../../model/data/task.dart';
 
@@ -14,7 +16,11 @@ class AdminPanelListTask extends StatefulWidget {
   final bool allList;
   final GlobalKey<ScaffoldState>? keyOne;
 
-   const AdminPanelListTask(this.allList, {Key? key, this.keyOne,}) : super(key: key);
+  const AdminPanelListTask(
+    this.allList, {
+    Key? key,
+    this.keyOne,
+  }) : super(key: key);
 
   @override
   State<AdminPanelListTask> createState() => _AdminPanelListTaskState();
@@ -34,21 +40,23 @@ class _AdminPanelListTaskState extends State<AdminPanelListTask> {
     await DatabaseHelper.intance.delete(mainProvider.task.id!);
     updateTaskList(context);
   }
+
   // final GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
   Widget build(BuildContext context) {
     bool seeAll = true;
     return Scaffold(
-
+      resizeToAvoidBottomInset: false,
       body: CustomScrollView(
-
         slivers: [
-          appBar(context, widget.keyOne,seeAll,true),
+          appBar(context, widget.keyOne, seeAll, true),
           SliverList(
-
             delegate: SliverChildListDelegate(
               [
-                tasksList(context, widget.allList),
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.8,
+                  child: ProductListFirebase(),
+                ),
               ],
             ),
           ),
@@ -223,8 +231,10 @@ class _AdminPanelCreateTaskState extends State<AdminPanelCreateTask> {
                     Timer(const Duration(seconds: 1), () {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (BuildContext context) =>
-                               AdminPanelListTask(true,keyOne: widget.keyOne,),
+                          builder: (BuildContext context) => AdminPanelListTask(
+                            true,
+                            keyOne: widget.keyOne,
+                          ),
                         ),
                       );
                     });

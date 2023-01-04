@@ -1,18 +1,17 @@
-
-import 'dart:async';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:yuksalish_1/model/firebase_services/model_services.dart';
 import '../data/task.dart';
 
 class MainProvider extends ChangeNotifier {
   late Task task;
+  int telefon = 0;
 
-  void deviceSize(context){
-    final size = MediaQuery.of(context).size;
-
-    notifyListeners();
-  }
+  // void deviceSize(context){
+  //   final size = MediaQuery.of(context).size;
+  //
+  //   notifyListeners();
+  // }
 
   //homeheadbanner widget da carousel da tanlangani aniqlab turuvchi o'zgaruvchi
   int pageIndex = 0;
@@ -32,6 +31,22 @@ class MainProvider extends ChangeNotifier {
     pageIndexCount = value;
 
   }
+
+
+    // void _create() async {
+    //   final FirebaseFirestore firestore = FirebaseFirestore.instance;
+    //
+    //   try {
+    //     await firestore.collection("movies").doc("${name.replaceAll(" ", "_")}_$year").set({
+    //       "name" : name,
+    //       "genre" : genre,
+    //       "year" : year,
+    //     });
+    //   }catch (e){
+    //     print(e);
+    //   }
+    // }
+
 
   //ma'lumot kelyotganida kutib turish uchun bool type
   bool isLoading = true;

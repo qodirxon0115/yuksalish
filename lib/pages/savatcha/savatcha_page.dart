@@ -22,6 +22,7 @@ class _SavatchaPageState extends State<SavatchaPage> {
     bool showIcon = false;
     final size = MediaQuery.of(context).size;
     return CustomScrollView(
+
       slivers: [
         appBar(context, keyOne, seeAll, showIcon),
         SliverList(
@@ -45,23 +46,26 @@ class _SavatchaPageState extends State<SavatchaPage> {
                     children: [
                       ...List.generate(
                           2,
-                          (index) => InkWell(
-                                onTap: () {
-                                  viewModel.isSelectedIndex(index);
-                                },
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    SelectContainerIndicator(
-                                      viewModel.pageIndexCount == index
-                                          ? true
-                                          : false,
-                                      child: stringList[index],
-                                    ),
-                                  ],
+                          (index) => AnimatedContainer(duration: const Duration(milliseconds: 450),
+                            // transform: Matrix4(),
+                            child: InkWell(
+                                  onTap: () {
+                                    viewModel.isSelectedIndex(index);
+                                  },
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      SelectContainerIndicator(
+                                        viewModel.pageIndexCount == index
+                                            ? true
+                                            : false,
+                                        child: stringList[index],
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              ))
+                          ))
                     ],
                   ),
                 ),

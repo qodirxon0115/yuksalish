@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
+import 'package:yuksalish_1/pages/home/widgets/home/task_list_widget/product_list_firebase.dart';
 import 'package:yuksalish_1/pages/home/widgets/home/task_list_widget/task_list.dart';
 
 import '../../../admin_pages/admin_panel_home.dart';
 
 Widget bodyListView(context, key) {
+
+
   final size = MediaQuery.of(context).size;
   return Column(
     children: [
@@ -105,7 +108,8 @@ Widget bodyListView(context, key) {
           const SizedBox(
             height: 20,
           ),
-          tasksList(context, false),
+          // tasksList(context, false),
+          const ProductListFirebase(),
         ],
       ),
     ],

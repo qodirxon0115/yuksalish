@@ -22,16 +22,20 @@ Widget body(widgetViewController,context,key) {
 
   return SliverList(
     delegate: SliverChildListDelegate([
-      Column(
-        children: [
-          //logo
-          homeBannerView(context),
 
-          const SizedBox(
-            height: 20,
-          ),
-          bodyListView(context,key),
-        ],
+      Container(
+        height: MediaQuery.of(context).size.height * 1.2,
+        child: Column(
+          children: [
+            //logo
+            homeBannerView(context),
+
+            const SizedBox(
+              height: 20,
+            ),
+            bodyListView(context,key),
+          ],
+        ),
       ),
     ]),
   );
