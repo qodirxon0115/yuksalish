@@ -1,9 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:flutter/material.dart';
-import 'package:yuksalish_1/model/firebase_services/model_services.dart';
 import '../data/task.dart';
 
 class MainProvider extends ChangeNotifier {
+  TextEditingController textController = TextEditingController();
   late Task task;
   int telefon = 0;
 
@@ -22,6 +22,7 @@ class MainProvider extends ChangeNotifier {
     pageIndex = value;
 
   }
+
   //savatcha page da bo'limni bosilganliginini aniqlovchi o'zgaruvchi
   int pageIndexCount = 0;
 

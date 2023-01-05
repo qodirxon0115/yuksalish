@@ -72,22 +72,22 @@ class ProductListFirebase extends StatelessWidget {
                         flex: 3,
                         child: Container(
                           margin: EdgeInsets.symmetric(horizontal: 5),
-                          decoration: BoxDecoration(
-                            image: const DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage("assets/images/image_1.png"),
-                            ),
-                            color: Color(0xffCFECEC),
-                            borderRadius: BorderRadius.circular(25),
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0xffF0F8FF).withOpacity(0.9),
-                                spreadRadius: 1,
-                                blurRadius: 5,
-                                offset: Offset(0, 5), // changes x,y position of shadow
-                              ),
-                            ],
-                          ),
+                          // decoration: BoxDecoration(
+                          //   image: const DecorationImage(
+                          //     fit: BoxFit.cover,
+                          //     image: AssetImage("assets/images/image_1.png"),
+                          //   ),
+                          //   color: Color(0xffCFECEC),
+                          //   borderRadius: BorderRadius.circular(25),
+                          //   boxShadow: [
+                          //     BoxShadow(
+                          //       color: Color(0xffF0F8FF).withOpacity(0.9),
+                          //       spreadRadius: 1,
+                          //       blurRadius: 5,
+                          //       offset: Offset(0, 5), // changes x,y position of shadow
+                          //     ),
+                          //   ],
+                          // ),
                         ),
                       ),
                       Padding(

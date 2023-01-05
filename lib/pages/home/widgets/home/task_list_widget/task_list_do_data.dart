@@ -42,10 +42,11 @@ Widget taskListDoDataItem(allList, snapshot) {
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 5),
                 decoration: BoxDecoration(
-                  image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage("assets/images/image_1.png"),
-                  ),
+                  // image: const DecorationImage(
+                  //   fit: BoxFit.cover,
+                  //   // image: AssetImage("assets/images/image_1.png"),
+                  // ),
+                  // color: Color(0xffCFECEC),
                   color: Color(0xffCFECEC),
                   borderRadius: BorderRadius.circular(25),
                   boxShadow: [

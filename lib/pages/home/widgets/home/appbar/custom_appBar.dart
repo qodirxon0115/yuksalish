@@ -54,10 +54,13 @@ class PersistentHeader extends SliverPersistentHeaderDelegate {
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
     final size = MediaQuery.of(context).size;
-    return ClipRect(
+    return
+      ClipRect(
         child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 30.0, sigmaY: 10.0),
-            child: Container(
+            child:
+
+            Container(
               width: width ?? double.infinity,
               height: height ?? size.height * 0.2,
               decoration: BoxDecoration(
@@ -72,7 +75,8 @@ class PersistentHeader extends SliverPersistentHeaderDelegate {
                   widget,
                 ],
               ),
-            )));
+            ))
+    );
   }
 }
 

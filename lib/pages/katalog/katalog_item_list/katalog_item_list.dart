@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:yuksalish_1/model/firebase_services/model_services.dart';
 import 'package:yuksalish_1/model/provider/model_pv.dart';
-import 'package:yuksalish_1/pages/katalog/katalog_page.dart';
 
 class KatalogItemList extends StatelessWidget {
   const KatalogItemList({

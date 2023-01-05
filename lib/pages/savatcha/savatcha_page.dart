@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:yuksalish_1/pages/home/widgets/home/appbar/custom_appBar.dart';
 
@@ -83,8 +84,8 @@ class _SavatchaPageState extends State<SavatchaPage> {
                 height: 35,
               ),
               Image.asset(
-                "assets/images/empty_icon.png",
-                scale: 7,
+                "assets/images/icons/empty_icon.png",
+                scale: 6,
               ),
               SizedBox(
                 height: 35,

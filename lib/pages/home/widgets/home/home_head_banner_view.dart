@@ -23,7 +23,7 @@ Widget homeBannerView(context) {
                 stream: DatabaseHelper.intance.getTasks().asStream(),
                 builder:
                     (BuildContext context, AsyncSnapshot<List<Task>> snapshot) {
-                  return snapshot.data != null
+                  return snapshot.data != ""
                       ? Column(
                           children: [
 
@@ -33,11 +33,11 @@ Widget homeBannerView(context) {
                                           (item) => Container(
                                             margin: const EdgeInsets.all(8),
                                             decoration: BoxDecoration(
-                                              image: const DecorationImage(
-                                                fit: BoxFit.cover,
-                                                image: AssetImage(
-                                                    "assets/images/image_1.png"),
-                                              ),
+                                              // image: const DecorationImage(
+                                              //   fit: BoxFit.cover,
+                                              //   image: AssetImage(
+                                              //       "assets/images/image_1.png"),
+                                              // ),
                                               color: Colors.indigo,
                                               borderRadius:
                                                   BorderRadius.circular(25),
