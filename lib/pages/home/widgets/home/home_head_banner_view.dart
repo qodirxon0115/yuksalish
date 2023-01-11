@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 import 'package:yuksalish_1/model/provider/model_pv.dart';
@@ -16,147 +17,187 @@ Widget homeBannerView(context) {
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Expanded(
-          flex: 8,
-          child: Consumer<MainProvider>(builder: (context, data, child) {
-            return StreamBuilder(
-                stream: DatabaseHelper.intance.getTasks().asStream(),
-                builder:
-                    (BuildContext context, AsyncSnapshot<List<Task>> snapshot) {
-                  return snapshot.data != ""
-                      ? Column(
-                          children: [
+        Consumer<MainProvider>(builder: (context, data, child) {
+          return StreamBuilder(
+              stream: DatabaseHelper.intance.getTasks().asStream(),
+              builder:
+                  (BuildContext context, AsyncSnapshot<List<Task>> snapshot) {
+                if(snapshot.hasError)return Center(child: Text("${snapshot.error}"),);
 
-                                 CarouselSlider(
-                                    items: snapshot.data
-                                        ?.map(
-                                          (item) => Container(
-                                            margin: const EdgeInsets.all(8),
-                                            decoration: BoxDecoration(
-                                              // image: const DecorationImage(
-                                              //   fit: BoxFit.cover,
-                                              //   image: AssetImage(
-                                              //       "assets/images/image_1.png"),
-                                              // ),
-                                              color: Colors.indigo,
-                                              borderRadius:
-                                                  BorderRadius.circular(25),
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Colors.grey
-                                                      .withOpacity(0.3),
-                                                  spreadRadius: 1,
-                                                  blurRadius: 5,
-                                                  offset: const Offset(0,5), // changes x,y position of shadow
-                                                ),
-                                              ],
-                                            ),
-                                            child: Center(
-                                                child: Column(
-                                                  mainAxisAlignment: MainAxisAlignment.end,
-                                                  children: [
-                                                    Row(
-                                                      children: [
-                                                        Expanded(
-                                                          child: Column(
-                                                            
-                                                            children: [
-                                                              Center(
-                                                                child: Padding(
-                                                                  padding: const EdgeInsets.only(left: 15.0,right: 12,bottom: 15),
-
-                                                                  child: Text(
-                                                                      item.title.toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
-                                                                ),
-                                                              ),
-                                                              // Center(
-                                                              //   child: Text(
-                                                              //         item.title.toString(),style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
-                                                              // ),
-                                                            ],
-                                                          ),
-                                                        ),
-
-                                                        Expanded(
-                                                          child: Center(
-                                                            child: Padding(
-                                                              padding: const EdgeInsets.only(left: 15.0,right: 12,bottom: 15),
-                                                              child: Text(
-                                                                  item.price.toString(),style: TextStyle(fontWeight: FontWeight.w500,fontSize: 16),),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ],
+                return snapshot.hasData
+                    ? Column(
+                        children: [
+                          CarouselSlider(
+                            items: snapshot.data
+                                ?.map(
+                                  (item) => Container(
+                                    margin: const EdgeInsets.all(8),
+                                    decoration: BoxDecoration(
+                                      // image: const DecorationImage(
+                                      //   fit: BoxFit.cover,
+                                      //   image: AssetImage(
+                                      //       "assets/images/image_1.png"),
+                                      // ),
+                                      color: Colors.indigo,
+                                      borderRadius: BorderRadius.circular(25),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.3),
+                                          spreadRadius: 1,
+                                          blurRadius: 5,
+                                          offset: const Offset(0,
+                                              5), // changes x,y position of shadow
+                                        ),
+                                      ],
+                                    ),
+                                    child: Center(
+                                        child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Column(
+                                                children: [
+                                                  Center(
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              left: 15.0,
+                                                              right: 12,
+                                                              bottom: 15),
+                                                      child: Text(
+                                                        item.title.toString(),
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 16),
+                                                      ),
                                                     ),
-                                                  ],
-                                                )),
-                                          ),
-                                        )
-                                        .toList(),
-                                    options: CarouselOptions(
-                                        onPageChanged: (index, reason) {
-                                          viewModel.isSelected(index);
-                                        },
-                                        autoPlay: true,
-                                        enlargeCenterPage: true,
-                                        aspectRatio: 3.0),
+                                                  ),
+                                                  // Center(
+                                                  //   child: Text(
+                                                  //         item.title.toString(),style: const TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                                                  // ),
+                                                ],
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Center(
+                                                child: Padding(
+                                                  padding:
+                                                      const EdgeInsets.only(
+                                                          left: 15.0,
+                                                          right: 12,
+                                                          bottom: 15),
+                                                  child: Text(
+                                                    item.price.toString(),
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize: 16),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    )),
                                   ),
-
-
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  ...List.generate(
-                                      snapshot.data!.length,
-                                      (index) => Indicator(
-                                            viewModel.pageIndex == index
-                                                ? true
-                                                : false,
-                                          ))
-                                ],
-                              ),
-                            ),
-
-                          ],
-                        )
-                      :  Container(
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: 20),
-                    width: double.infinity,
-                    height: 135,
-                    margin: const EdgeInsets.all(8),
-                    child: Shimmer(
-                        duration:
-                        const Duration(milliseconds: 800),
-                        //Default value
-                        interval:
-                        const Duration(milliseconds: 300),
-                        //Default value: Duration(seconds: 0)
-                        color: Colors.white,
-                        //Default value
-                        colorOpacity: 0.4,
-                        //Default value
-                        enabled: true,
-                        //Default value
-                        direction:
-                        const ShimmerDirection.fromLTRB(),
-                        //Default Value
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius:
-                            BorderRadius.circular(25),
-                            color: Colors.black12,
+                                )
+                                .toList(),
+                            options: CarouselOptions(
+                                onPageChanged: (index, reason) {
+                                  viewModel.isSelected(index);
+                                },
+                                autoPlay: true,
+                                enlargeCenterPage: true,
+                                aspectRatio: 3.0),
                           ),
-                        )),
-                  );
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ...List.generate(
+                                    snapshot.data!.length,
+                                    (index) => Indicator(
+                                          viewModel.pageIndex == index
+                                              ? true
+                                              : false,
+                                      true,
+                                        ))
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            width: double.infinity,
+                            height: MediaQuery.of(context).size.height * 0.18,
+                            margin: const EdgeInsets.all(8),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(25),
+                              child: Shimmer(
+                                  duration: const Duration(milliseconds: 800),
+                                  //Default value
+                                  interval: const Duration(milliseconds: 300),
+                                  //Default value: Duration(seconds: 0)
+                                  color: Colors.white,
+                                  //Default value
+                                  colorOpacity: 0.4,
+                                  //Default value
+                                  enabled: true,
+                                  //Default value
+                                  direction: const ShimmerDirection.fromLTRB(),
+                                  //Default Value
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(25),
+                                      color: Colors.black12,
+                                    ),
+                                  )),
+                            ),
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              
+                              ...List.generate(
+                                5,
+                                (index) => ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Shimmer(
+                                    duration: const Duration(milliseconds: 800),
+                                    //Default value
+                                    interval: const Duration(milliseconds: 300),
+                                    //Default value: Duration(seconds: 0)
+                                    color: Colors.white,
+                                    //Default value
+                                    colorOpacity: 0.4,
+                                    //Default value
+                                    enabled: true,
+                                    //Default value
+                                    direction: const ShimmerDirection.fromLTRB(),
+                                    child: Indicator(
+                                      0 == index ? true : false,
+                                      false,
 
-                }
-                );
-          }),
-
-        ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: 10,),
+                        ],
+                      );
+              });
+        }),
         Center(
           child: Container(
             margin: const EdgeInsets.only(left: 20, right: 20),
@@ -192,9 +233,12 @@ Widget homeBannerView(context) {
 
 class Indicator extends StatelessWidget {
   final bool isActive;
+  final bool isLoading;
 
   const Indicator(
-    this.isActive, {
+      this.isActive,
+      this.isLoading,
+     {
     Key? key,
   }) : super(key: key);
 
@@ -206,7 +250,7 @@ class Indicator extends StatelessWidget {
       width: isActive ? 22.0 : 8.0,
       height: 8.0,
       decoration: BoxDecoration(
-        color: isActive ? Colors.indigo : Colors.white,
+        color: isActive ? isLoading ? Colors.indigo : Colors.grey : isLoading ? Colors.white : Colors.grey,
         borderRadius: BorderRadius.circular(8.0),
       ),
     );

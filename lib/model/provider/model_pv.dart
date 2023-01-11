@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import '../data/task.dart';
 
@@ -6,6 +7,22 @@ class MainProvider extends ChangeNotifier {
   TextEditingController textController = TextEditingController();
   late Task task;
   int telefon = 0;
+  bool isLoadingKategoriya = false;
+
+  void isLoadingKategoriyaFunction(value){
+    isLoadingKategoriya = value;
+    notifyListeners();
+  }
+  Future<List<DocumentSnapshot>> searchList(String field, dynamic value) async {
+    final collectionReference = FirebaseFirestore.instance.collection('items');
+    final query = collectionReference.where(field, arrayContains: value);
+
+    final snapshot = await query.get();
+    final documents = snapshot.docs;
+
+    return documents;
+  }
+
 
   // void deviceSize(context){
   //   final size = MediaQuery.of(context).size;

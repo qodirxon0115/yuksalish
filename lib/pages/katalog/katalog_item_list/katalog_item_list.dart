@@ -30,9 +30,9 @@ class KatalogItemList extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final moviesRef = FirebaseFirestore.instance
         .collection('productList')
-        .withConverter<ProductList>(
+        .withConverter<CategoryList>(
           fromFirestore: (snapshots, _) =>
-              ProductList.fromJson(snapshots.data()!),
+              CategoryList.fromJson(snapshots.data()!),
           toFirestore: (productList, _) => productList.toJson(),
         );
     return Scaffold(
@@ -55,7 +55,7 @@ class KatalogItemList extends StatelessWidget {
           ),
         ),
       ),
-      body: StreamBuilder<QuerySnapshot<ProductList>>(
+      body: StreamBuilder<QuerySnapshot<CategoryList>>(
         stream: moviesRef.snapshots(),
         builder: (context, snapshot) {
           if (snapshot.hasError) {
@@ -99,7 +99,7 @@ class KatalogItemList extends StatelessWidget {
                           children: [
                             Expanded(
                                 child: Text(
-                              snapshot.data!.docs[index].data().title ?? "",
+                              snapshot.data!.docs[index].data().title!.title ?? "",
                               style: TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.bold),
                             )),

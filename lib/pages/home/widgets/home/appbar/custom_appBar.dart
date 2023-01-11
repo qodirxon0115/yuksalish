@@ -104,6 +104,7 @@ floating: true,
 
       widget:
       SingleChildScrollView(
+
         // physics: NeverScrollableScrollPhysics(),
         child: Container(
           child: !seeAll

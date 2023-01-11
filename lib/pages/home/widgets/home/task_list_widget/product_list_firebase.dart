@@ -152,7 +152,7 @@ class ProductListFirebase extends StatelessWidget {
 
                                       onTap: () {
 
-                                        snapshot.data?.docs[index].data().like == true ? snapshot.data?.docs[index].data().like = true : snapshot.data?.docs[index].data().like = false;
+                                        // snapshot.data?.docs[index].data().like == true ? snapshot.data?.docs[index].data().like = true : snapshot.data?.docs[index].data().like = false;
                                       }, child: snapshot.data?.docs[index].data().like != true  ? const Icon(Icons.favorite_border) : const Icon(Icons.favorite,color: Colors.red,) )
                                 ],
                               ),

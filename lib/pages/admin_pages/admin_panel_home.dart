@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:yuksalish_1/pages/home/widgets/home/appbar/custom_appBar.dart';
 import 'package:yuksalish_1/pages/home/widgets/home/task_list_widget/product_list_firebase.dart';
+import 'package:yuksalish_1/pages/katalog/catalog_list.dart';
 import '../../model/data/database_helpaer.dart';
 import '../../model/data/task.dart';
 
@@ -47,20 +48,24 @@ class _AdminPanelListTaskState extends State<AdminPanelListTask> {
     bool seeAll = true;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: CustomScrollView(
-        slivers: [
-          appBar(context, widget.keyOne, seeAll, true),
-          SliverList(
-            delegate: SliverChildListDelegate(
-              [
-                Container(
-                  height: MediaQuery.of(context).size.height * 0.8,
-                  child: ProductListFirebase(),
-                ),
-              ],
+      body: ScrollConfiguration(
+        behavior: MyBehavior(),
+        child: CustomScrollView(
+
+          slivers: [
+            appBar(context, widget.keyOne, seeAll, true),
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.8,
+                    child: ProductListFirebase(),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -269,5 +274,12 @@ class _AdminPanelCreateTaskState extends State<AdminPanelCreateTask> {
     );
 
     DatabaseHelper.intance.insert(newTask);
+  }
+}
+class MyBehavior extends ScrollBehavior {
+  @override
+  Widget buildOverscrollIndicator(
+      BuildContext context, Widget child, ScrollableDetails details) {
+    return child;
   }
 }

@@ -12,7 +12,7 @@ Widget taskListDoDataItem(allList, snapshot) {
       crossAxisSpacing: 15,
     ),
     itemCount: snapshot.data?.length,
-    padding: const EdgeInsets.only(bottom: 10, left: 20),
+    padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
     itemBuilder: (context, index) {
       return Card(
         borderOnForeground: true,
