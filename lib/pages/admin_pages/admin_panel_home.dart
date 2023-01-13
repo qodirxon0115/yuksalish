@@ -32,15 +32,15 @@ class _AdminPanelListTaskState extends State<AdminPanelListTask> {
     final mainProvider = Provider.of<MainProvider>(context, listen: false);
     mainProvider.updateTaskList();
   }
-
-  void deleteTask(context) async {
-    final mainProvider = Provider.of<MainProvider>(
-      context,
-    );
-
-    await DatabaseHelper.intance.delete(mainProvider.task.id!);
-    updateTaskList(context);
-  }
+  //
+  // void deleteTask(context) async {
+  //   final mainProvider = Provider.of<MainProvider>(
+  //     context,
+  //   );
+  //
+  //   await DatabaseHelper.intance.delete(mainProvider.task.id!);
+  //   updateTaskList(context);
+  // }
 
   // final GlobalKey<ScaffoldState> _key = GlobalKey();
   @override
@@ -57,9 +57,9 @@ class _AdminPanelListTaskState extends State<AdminPanelListTask> {
             SliverList(
               delegate: SliverChildListDelegate(
                 [
-                  Container(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height * 0.8,
-                    child: ProductListFirebase(),
+                    child: const HomeListProduct(),
                   ),
                 ],
               ),

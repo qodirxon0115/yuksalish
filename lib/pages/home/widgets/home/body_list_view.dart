@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 import 'package:yuksalish_1/pages/home/widgets/home/task_list_widget/product_list_firebase.dart';
 import 'package:yuksalish_1/pages/home/widgets/home/task_list_widget/task_list.dart';
+import 'package:yuksalish_1/pages/katalog/product_pages/product_list_create_page.dart';
 
 import '../../../admin_pages/admin_panel_home.dart';
 
@@ -108,8 +109,9 @@ Widget bodyListView(context, key) {
           const SizedBox(
             height: 20,
           ),
-          // tasksList(context, false),
-          const ProductListFirebase(),
+          const HomeListProduct( ),
+          // const ProductListFirebase(),
+          // const CreateProduct(kategoriya: "Gas plita"),
         ],
       ),
     ],

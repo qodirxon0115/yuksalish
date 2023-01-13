@@ -8,12 +8,12 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:yuksalish_1/model/firebase_services/model_services.dart';
 
-
 class FloatingButtonActionCategoriya extends StatefulWidget {
   final bool showCard;
-   final String collectionName;
+  final String collectionName;
 
-   const FloatingButtonActionCategoriya({Key? key, required this.collectionName, required this.showCard})
+  const FloatingButtonActionCategoriya(
+      {Key? key, required this.collectionName, required this.showCard})
       : super(key: key);
 
   @override
@@ -141,144 +141,131 @@ class _FloatingButtonActionCategoriyaState
                           ),
                         ],
                       )
-                    :  Container(
+                    : Container(
                         width: size.width * 0.9,
-
                         padding: const EdgeInsets.all(15),
-                          decoration: BoxDecoration(
-                              color: Colors.white.withOpacity(0.3),
-                              borderRadius: BorderRadius.circular(25)),
-                          child:
-                              SizedBox(
-                                height: size.height * 0.45,
-                                child:   Column(
-                                        children: [
-                                          SizedBox(
-                                            height: size.height * 0.1,
-
-                                            child: Form(
-                                              key: _keyTitleForm,
-                                              child:TextFormField(
-                                                keyboardType: TextInputType.name,
-                                                decoration: InputDecoration(
-                                                  border: OutlineInputBorder(
-                                                    borderRadius:
-                                                    BorderRadius.circular(35),
-                                                  ),
-                                                  labelText: "Nomi",
-                                                ),
-                                                validator: (value) {
-                                                  if (value != null &&
-                                                      value.isEmpty) {
-                                                    return "To'ldirilmagan";
-                                                  }
-                                                  return null;
-                                                },
-                                                onSaved: (value) {
-                                                  title = value!;
-                                                },
-                                              ),),
-                                          ),
-
-                                          SizedBox(
-                                            height: size.height * 0.15,
-                                            child: InkWell(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                              onTap: () {
-                                                setState(() {
-                                                  _getImage().whenComplete(() =>
-                                                      setState(() =>
-                                                          _selectedImage =
-                                                              _selectedImage));
-                                                });
-                                              },
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                  borderRadius:
-                                                      BorderRadius.circular(20),
-                                                  border: Border.all(
-                                                      color: validImage
-                                                          ? Colors.red
-                                                          : Colors.black),
-                                                ),
-                                                height: size.height * 0.15,
-                                                width: size.width * 0.55,
-                                                child: _selectedImage.path != ""
-                                                    ? FadeInImage(
-                                                        image: FileImage(
-                                                            _selectedImage),
-                                                        placeholderFit:
-                                                            BoxFit.fitHeight,
-                                                        placeholder:
-                                                            const AssetImage(
-                                                          "assets/images/icons/picture_ic.png",
-                                                        ),
-                                                      )
-                                                    : const Icon(
-                                                        Icons.add_a_photo_outlined,
-                                                        size: 35,
-                                                      ),
-                                              ),
-                                            ),
-                                          ),
-
-                                          const SizedBox(
-                                            height: 15,
-                                          ),
-                                    SizedBox(
-                                      height: size.height * 0.1,
-
-                                      child: Form(
-                                        key: _keyPriceForm,
-                                        child:TextFormField(
-                                              keyboardType: TextInputType.name,
-                                              decoration: InputDecoration(
-                                                border: OutlineInputBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(35),
-                                                ),
-                                                labelText: "Narxi",
-                                              ),
-                                              validator: (value) {
-                                                if (value != null &&
-                                                    value.isEmpty) {
-                                                  return "To'ldirilmagan";
-                                                }
-                                                return null;
-                                              },
-                                              onSaved: (value) {
-                                                price = value!;
-                                              },
-                                            ),),
+                        decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(25)),
+                        child: SizedBox(
+                            height: size.height * 0.45,
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: size.height * 0.1,
+                                  child: Form(
+                                    key: _keyTitleForm,
+                                    child: TextFormField(
+                                      keyboardType: TextInputType.name,
+                                      decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(35),
+                                        ),
+                                        labelText: "Nomi",
+                                      ),
+                                      validator: (value) {
+                                        if (value != null && value.isEmpty) {
+                                          return "To'ldirilmagan";
+                                        }
+                                        return null;
+                                      },
+                                      onSaved: (value) {
+                                        title = value!;
+                                      },
                                     ),
-                                          Column(
-                                            children: [
-                                              ElevatedButton(
-                                                onPressed: () {
-                                                  setState(() {
-                                                    if (count == 1) {
-                                                      _selectedImage.path != ""
-                                                          ? validImage = true
-                                                          : validImage = false;
-                                                    }
-                                                  });
-                                                    addProduct();
-                                                    _create();
-
-                                                  // _getImage();
-                                                },
-                                                child: const Text("Qo'shish"),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.15,
+                                  child: InkWell(
+                                    borderRadius: BorderRadius.circular(20),
+                                    onTap: () {
+                                      setState(() {
+                                        _getImage().whenComplete(() => setState(
+                                            () => _selectedImage =
+                                                _selectedImage));
+                                      });
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(20),
+                                        border: Border.all(
+                                            color: validImage
+                                                ? Colors.red
+                                                : Colors.black),
+                                      ),
+                                      height: size.height * 0.15,
+                                      width: size.width * 0.55,
+                                      child: _selectedImage.path != ""
+                                          ? FadeInImage(
+                                              image: FileImage(_selectedImage),
+                                              placeholderFit: BoxFit.fitHeight,
+                                              placeholder: const AssetImage(
+                                                "assets/images/icons/picture_ic.png",
                                               ),
-                                              const SizedBox(height: 12,)
+                                            )
+                                          : const Icon(
+                                              Icons.add_a_photo_outlined,
+                                              size: 35,
+                                            ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                SizedBox(
+                                  height: size.height * 0.1,
+                                  child: Form(
+                                    key: _keyPriceForm,
+                                    child: TextFormField(
+                                      keyboardType: TextInputType.name,
+                                      decoration: InputDecoration(
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(35),
+                                        ),
+                                        labelText: "Narxi",
+                                      ),
+                                      validator: (value) {
+                                        if (value != null && value.isEmpty) {
+                                          return "To'ldirilmagan";
+                                        }
+                                        return null;
+                                      },
+                                      onSaved: (value) {
+                                        price = value!;
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                Column(
+                                  children: [
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          if (count == 1) {
+                                            _selectedImage.path != ""
+                                                ? validImage = true
+                                                : validImage = false;
+                                          }
+                                        });
+                                        addProduct();
+                                        _create();
 
-                                            ],
-                                          ),
-                                        ],
-                                      )),
-
-
-                        ),
+                                        // _getImage();
+                                      },
+                                      child: const Text("Qo'shish"),
+                                    ),
+                                    const SizedBox(
+                                      height: 12,
+                                    )
+                                  ],
+                                ),
+                              ],
+                            )),
+                      ),
               ),
             ));
           }),
@@ -292,7 +279,7 @@ class _FloatingButtonActionCategoriyaState
 
   void addProduct() {
     if (_selectedImage.path != "") {
-      if(!widget.showCard){
+      if (!widget.showCard) {
         bool isValidTitle = _keyTitleForm.currentState!.validate();
         if (isValidTitle) {
           _keyTitleForm.currentState!.save();
@@ -309,8 +296,7 @@ class _FloatingButtonActionCategoriyaState
                 ],
               )));
         }
-
-      }else{
+      } else {
         bool isValidTitle = _keyTitleForm.currentState!.validate();
         bool isValidPrice = _keyPriceForm.currentState!.validate();
         if (isValidTitle && isValidPrice) {
@@ -318,43 +304,81 @@ class _FloatingButtonActionCategoriyaState
           _keyPriceForm.currentState!.save();
           _create();
           Navigator.pop(context);
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
               duration: const Duration(milliseconds: 500),
               backgroundColor: Colors.green.shade200,
               padding: const EdgeInsets.only(top: 0, bottom: 0),
               content: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
-                  Text("Muvaffaqiyatli qo'shdingiz"),
+                  Text("Serverga so'rov yuborildi"),
                 ],
-              )));
+              ),
+            ),
+          );
         }
-
       }
-
     }
   }
 
   late final DocumentReference<ProductList> reference;
 
   void _create() async {
+    String compareText = title;
+    String result = "";
+
+    for (var item in compareText.split("")) {
+      String compareItem = item;
+      item == "/" ? compareItem = "_" : compareItem;
+      result = "$result$compareItem";
+    }
     var firebaseStorageRef = FirebaseStorage.instance
         .ref()
         .child(widget.collectionName == "" ? "banners" : widget.collectionName)
         /*.child(_selectedImage.path)*/
-        .child('$title.jpg');
+        .child("$result.jpg");
     final task = firebaseStorageRef.putFile(File(_selectedImage.path));
     var downloadUrl = await (await task).ref.getDownloadURL();
     final FirebaseFirestore firestore = FirebaseFirestore.instance;
-
+    if (kDebugMode) {
+      print(title);
+    }
     try {
-      await firestore.collection(widget.collectionName == "" ? "catalog" : widget.collectionName).doc("kategoriya_$title").set({
-        "title": {"title": title, "price" : price},
+
+      print(result);
+      await firestore
+          .collection(
+              widget.collectionName == "" ? "catalog" : widget.collectionName)
+          .doc("kategoriya_$result")
+          .set({
+        "title": {"title": title, "price": price},
         "image": downloadUrl,
       });
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          duration: const Duration(milliseconds: 500),
+          backgroundColor: Colors.green.shade200,
+          padding: const EdgeInsets.only(top: 0, bottom: 0),
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text("Ma'lumot muvofaqqiyatli qo'shildi"),
+            ],
+          )));
     } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          duration: const Duration(milliseconds: 500),
+          backgroundColor: Colors.green.shade200,
+          padding: const EdgeInsets.only(top: 0, bottom: 0),
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Text("Nimadir xato ketdi va serverga ma'lumot qo'shilmadi"),
+            ],
+          )));
       if (kDebugMode) {
         print("Xatolik: $e");
+        print(title);
       }
     }
   }

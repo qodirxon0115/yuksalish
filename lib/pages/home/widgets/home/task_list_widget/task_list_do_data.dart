@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 
 Widget taskListDoDataItem(allList, snapshot) {
-  double _childAspectRatio;
-  _childAspectRatio = 0.61;
+  double childAspectRatio;
+  childAspectRatio = 0.61;
   return GridView.builder(
     scrollDirection: Axis.vertical,
     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
       crossAxisCount: 2,
-      childAspectRatio: _childAspectRatio,
+      childAspectRatio: childAspectRatio,
       mainAxisSpacing: 20,
       crossAxisSpacing: 15,
     ),
-    itemCount: snapshot.data?.length,
+    itemCount: snapshot.data.docs.length,
     padding: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
     itemBuilder: (context, index) {
       return Card(
@@ -31,8 +31,8 @@ Widget taskListDoDataItem(allList, snapshot) {
                 children: [
                   Expanded(
                       child: Text(
-                    snapshot.data?[index].title ?? "",
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    snapshot.data.docs[index].data().title!.title ?? "",
+                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   )),
                 ],
               ),
@@ -40,7 +40,7 @@ Widget taskListDoDataItem(allList, snapshot) {
             Expanded(
               flex: 3,
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 5),
+                margin: const EdgeInsets.symmetric(horizontal: 5),
                 decoration: BoxDecoration(
                   // image: const DecorationImage(
                   //   fit: BoxFit.cover,
@@ -68,7 +68,7 @@ Widget taskListDoDataItem(allList, snapshot) {
                     children: [
                       Text(
                         snapshot.data?[index].price ?? "",
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.w500,
                             color: Colors.redAccent),

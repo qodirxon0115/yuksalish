@@ -1,13 +1,13 @@
 import 'dart:async';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 import 'package:yuksalish_1/pages/admin_pages/admin_panel_home.dart';
+import 'package:yuksalish_1/pages/alerts/delete_alertdialog.dart';
 import 'package:yuksalish_1/pages/katalog/product_pages/product_list_create_page.dart';
 
 import '../../model/firebase_services/model_services.dart';
@@ -103,7 +103,7 @@ class _CatalogListState extends State<CatalogList> {
                     child: ListView.builder(
                         itemCount: snapshot.requireData.size,
                         itemBuilder: (BuildContext context, int index) {
-                          final item = snapshot.data!.docs[index].data();
+                       final item = snapshot.data!.docs[index].data();
                           if (isLoadingPage) {
                             Center(
                               child: Text(
@@ -117,11 +117,10 @@ class _CatalogListState extends State<CatalogList> {
                           }
                           return snapshot.data?.docs[index].data().image != ""
                               ? Dismissible(
-                                  resizeDuration:
-                                      const Duration(milliseconds: 350),
-                                  movementDuration:
-                                      const Duration(milliseconds: 500),
-                                  key: ObjectKey(item.title!.title),
+                            direction: DismissDirection.endToStart,
+
+
+                                  key: GlobalKey(debugLabel: item.title!.title),
                                   background: Container(
                                     color: Colors.green,
                                   ),
@@ -129,25 +128,7 @@ class _CatalogListState extends State<CatalogList> {
                                     color: Colors.red,
                                   ),
                                   onDismissed: (value) {
-                                    setState(() {
-                                      _delete(item);
-                                    });
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                        SnackBar(
-                                            duration: const Duration(
-                                                milliseconds: 500),
-                                            backgroundColor:
-                                                Colors.red.shade200,
-                                            padding: const EdgeInsets.only(
-                                                top: 0, bottom: 0),
-                                            content: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                    "${item.title!.title} o'chirildi")
-                                              ],
-                                            )));
+                                   showDialog(context: context, builder: (BuildContext context)=> DeleteAlertDialog(category: item, collection: "catalog"));
                                   },
                                   child: Container(
                                     decoration: BoxDecoration(
@@ -208,11 +189,15 @@ class _CatalogListState extends State<CatalogList> {
                                         ],
                                       ),
                                       onTap: () {
-                                        print(index);
-                                        print(snapshot.data!.docs[index]
+                                        if (kDebugMode) {
+                                          print(index);
+                                        }
+                                        if (kDebugMode) {
+                                          print(snapshot.data!.docs[index]
                                             .data()
                                             .title!.title
                                             );
+                                        }
                                         Navigator.push(
                                             context,
                                             MaterialPageRoute(
@@ -254,43 +239,5 @@ class _CatalogListState extends State<CatalogList> {
     });
   }
 
-  void _delete(CategoryList category) async {
-    final FirebaseFirestore fireStore = FirebaseFirestore.instance;
-    final FirebaseStorage firebase = FirebaseStorage.instance;
-    try {
-      if (kDebugMode) {
-        print("kategoriya_${category.title!.title}");
-      }
-      fireStore
-          .collection("catalog")
-          .doc("kategoriya_${category.title!.title}")
-          .delete();
 
-
-
-
-
-
-
-      if (kDebugMode) {
-        print(category.image);
-      }
-      firebase.refFromURL(category.image ?? "").delete();
-      fetcMovies();
-    } catch (e) {
-      if (kDebugMode) {
-        print(e);
-      }
-    }
-  }
-
-  CollectionReference<CategoryList> fetcMovies() {
-    return FirebaseFirestore.instance
-        .collection('catalog')
-        .withConverter<CategoryList>(
-          fromFirestore: (snapshots, _) =>
-              CategoryList.fromJson(snapshots.data()!),
-          toFirestore: (productList, _) => productList.toJson(),
-        );
-  }
 }

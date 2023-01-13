@@ -1,11 +1,14 @@
 
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../data/task.dart';
+import '../firebase_services/model_services.dart';
 
 class MainProvider extends ChangeNotifier {
   TextEditingController textController = TextEditingController();
-  late Task task;
+  // late Task task;
   int telefon = 0;
   bool isLoadingKategoriya = false;
 
@@ -21,6 +24,62 @@ class MainProvider extends ChangeNotifier {
     final documents = snapshot.docs;
 
     return documents;
+  }
+
+  void delete(CategoryList category,String collection,context) async {
+    final FirebaseFirestore fireStore = FirebaseFirestore.instance;
+    final FirebaseStorage firebase = FirebaseStorage.instance;
+    String result = "";
+
+    for (var item in category.title!.title!.split("")) {
+      String compareItem = item;
+      item == "/" ? compareItem = "_" : compareItem;
+      result = "$result$compareItem";
+    }
+    try {
+      if (kDebugMode) {
+        print("kategoriya_$result");
+      }
+      fireStore
+          .collection(collection)
+          .doc("kategoriya_$result")
+          .delete();
+
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          duration: const Duration(milliseconds: 1500),
+          backgroundColor: Colors.redAccent.shade200,
+          padding: const EdgeInsets.only(top: 0, bottom: 0),
+          content: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children:  [
+              Text("${category.title!.title} o'chirildi"),
+            ],
+          )));
+
+
+
+
+
+      if (kDebugMode) {
+        print(category.image);
+      }
+      firebase.refFromURL(category.image ?? "").delete();
+      fetcMovies(collection);
+    } catch (e) {
+      if (kDebugMode) {
+        print(e);
+      }
+    }
+  }
+
+  CollectionReference<CategoryList> fetcMovies(String collection) {
+    return FirebaseFirestore.instance
+        .collection(collection)
+        .withConverter<CategoryList>(
+      fromFirestore: (snapshots, _) =>
+          CategoryList.fromJson(snapshots.data()!),
+      toFirestore: (productList, _) => productList.toJson(),
+    );
   }
 
 

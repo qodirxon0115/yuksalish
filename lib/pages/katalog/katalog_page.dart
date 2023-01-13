@@ -25,7 +25,7 @@ class _KatalogPageState extends State<KatalogPage> {
           //   height: 35,
           // ),
           KatalogAppBar(title: '', isActiveBack: false,),
-          CatalogList(),
+          const CatalogList(),
         ],
       ),
       floatingActionButton:  FloatingButtonActionCategoriya(showCard: false, collectionName: '',),
