@@ -322,7 +322,7 @@ class _FloatingButtonActionCategoriyaState
     }
   }
 
-  late final DocumentReference<ProductList> reference;
+  // late final DocumentReference<ProductList> reference;
 
   void _create() async {
     String compareText = title;

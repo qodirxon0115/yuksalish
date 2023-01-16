@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:yuksalish_1/pages/alerts/delete_alertdialog.dart';
+import 'package:yuksalish_1/pages/home/home_page.dart';
 
 import '../../../../../model/firebase_services/model_services.dart';
 import '../../../../admin_pages/admin_panel_home.dart';
@@ -16,8 +17,9 @@ class HomeListProduct extends StatefulWidget {
 class _HomeListProductState extends State<HomeListProduct> {
   @override
   Widget build(BuildContext context) {
+    String collection = "Popular list";
     final moviesRef = FirebaseFirestore.instance
-        .collection('Televizor')
+        .collection(collection)
         .withConverter<CategoryList>(
       fromFirestore: (snapshots, _) =>
           CategoryList.fromJson(snapshots.data()!),
@@ -74,143 +76,143 @@ class _HomeListProductState extends State<HomeListProduct> {
                       elevation: 12,
                       child: InkWell(
                         onLongPress: () {
-                          showDialog(context: context, builder: (BuildContext context)=> DeleteAlertDialog(category: snapshot.data!.docs[index].data(), collection: 'Kompyuter va orgtexnika',));
+                          showDialog(context: context, builder: (BuildContext context)=> DeleteAlertDialog(category: snapshot.data!.docs[index].data(), collection: collection,));
 
                         },
                         child:Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              children: [
-                                Expanded(
-                                    child: Text(
-                                      "${snapshot.data!.docs[index]
-                                          .data()
-                                          .title!
-                                          .title}",
-                                      style: const TextStyle(fontSize: 16,
-                                          fontWeight: FontWeight.bold),
-                                    )),
+                          Container(
+
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 5, vertical: 8),
+                            decoration: BoxDecoration(
+
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(25),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black54.withOpacity(0.15),
+                                  spreadRadius: 1,
+                                  blurRadius: 1,
+                                  offset: const Offset(
+                                      0, 1), // changes x,y position of shadow
+                                ),
                               ],
                             ),
-                          ),
-                          Expanded(
-                            flex: 3,
-                            child: Container(
-
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 5),
-                              decoration: BoxDecoration(
-
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(25),
-                                boxShadow: [
-                                  BoxShadow(
-                                    color: Colors.black54.withOpacity(0.1),
-                                    spreadRadius: 1,
-                                    blurRadius: 1,
-                                    offset: const Offset(
-                                        0, 1), // changes x,y position of shadow
-                                  ),
-                                ],
-                              ),
-                              width: double.infinity,
-                              height: double.infinity,
-                              child: FadeInImage(
-                                image: NetworkImage(snapshot
-                                    .data!.docs[index]
-                                    .data()
-                                    .image ??
-                                    ""),
-                                placeholderFit:
-                                BoxFit.fitHeight,
-                                placeholder: const AssetImage(
-                                  "assets/images/icons/picture_ic.png",
-                                ),
+                            width: double.infinity,
+                            height: MediaQuery.of(context).size.height * 0.2,
+                            child: FadeInImage(
+                              image: NetworkImage(snapshot
+                                  .data!.docs[index]
+                                  .data()
+                                  .image ??
+                                  ""),
+                              placeholderFit:
+                              BoxFit.fitHeight,
+                              placeholder: const AssetImage(
+                                "assets/images/icons/picture_ic.png",
                               ),
                             ),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.all(12.0),
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      snapshot.data!.docs[index]
-                                          .data()
-                                          .title!
-                                          .price ?? "",
-                                      style: const TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.redAccent),
-                                    ),
-                                    const Text(
-                                      " so'm",
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.redAccent),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(
-                                  height: 8,
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      snapshot.data!.docs[index]
-                                          .data()
-                                          .title!
-                                          .price ?? "",
-                                      style: const TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.black54),
-                                    ),
-                                    const Text(
-                                      " so'm dan",
-                                      style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500,
-                                          color: Colors.black54),
-                                    ),
-                                  ],
-                                ),
-                                const Divider(thickness: 2),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 2.0, vertical: 6.0),
-                                  child: Row(
+
+                          Container(
+                            height: MediaQuery.of(context).size.height * 0.046,
+                            margin: const EdgeInsets.only(top: 8.0,left: 8,right: 8),
+                            child:
+                                 Expanded(
+                                   child: Text(
+                                        "${snapshot.data!.docs[index]
+                                            .data()
+                                            .title!
+                                            .title}",        softWrap: false,
+                                     maxLines: 2,
+                                     overflow: TextOverflow.ellipsis,
+                                        style: const TextStyle(fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                 ),
+                          ),
+
+                           Padding(
+                             padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                             child: Column(
+                                children: [
+                                  Row(
                                     children: [
+                                      Text(
+                                        snapshot.data!.docs[index]
+                                            .data()
+                                            .title!
+                                            .price ?? "",
+                                        style: const TextStyle(
+                                            fontSize: 16,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.redAccent),
+                                      ),
                                       const Text(
-                                        "1 Taklif",
+                                        " so'm",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.w500,
-                                            color: Colors.black),
+                                            color: Colors.redAccent),
                                       ),
-                                      const Spacer(),
-                                      InkWell(
-
-
-                                          onTap: () {
-                                            // snapshot.data?.docs[index].data().like == true ? snapshot.data?.docs[index].data().like = true : snapshot.data?.docs[index].data().like = false;
-                                          }, child: snapshot.data?.docs[index]
-                                          .data()
-                                          .like != true ? const Icon(
-                                          Icons.favorite_border) : const Icon(
-                                        Icons.favorite, color: Colors.red,))
                                     ],
                                   ),
-                                ),
-                              ],
-                            ),
-                          ),
+                                  const SizedBox(
+                                    height: 2,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        snapshot.data!.docs[index]
+                                            .data()
+                                            .title!
+                                            .creditePrice ?? "",
+                                        style: const TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.black54),
+                                      ),
+                                      const Text(
+                                        " so'm dan",
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                            color: Colors.black54),
+                                      ),
+                                    ],
+                                  ),
+                                  const Divider(thickness: 2),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 4.0, ),
+                                    child: Row(
+                                      children: [
+                                        const Text(
+                                          "1 Taklif",
+                                          style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.w500,
+                                              color: Colors.black),
+                                        ),
+                                        const Spacer(),
+                                        InkWell(
+
+
+                                            onTap: () {
+                                              // snapshot.data?.docs[index].data().like == true ? snapshot.data?.docs[index].data().like = true : snapshot.data?.docs[index].data().like = false;
+                                            }, child: snapshot.data?.docs[index]
+                                            .data()
+                                            .like != true ? const Icon(
+                                            Icons.favorite_border) : const Icon(
+                                          Icons.favorite, color: Colors.red,))
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                           ),
                         ],
                       ),
                     ),

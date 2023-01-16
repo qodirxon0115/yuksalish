@@ -208,7 +208,8 @@ class _CatalogListState extends State<CatalogList> {
                                                                   .title!
                                                                   .title ??
                                                               "",
-                                                        )));
+                                                        ),
+                                            ));
                                       },
                                     ),
                                   ),

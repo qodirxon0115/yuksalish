@@ -66,7 +66,7 @@ class CategoryList {
     Title? title,
     bool? like,
     String? price,
-    String? model,
+    String? creditPrice,
     String? category,
     String? description,
     String? charecteristics,
@@ -76,7 +76,7 @@ class CategoryList {
   }) {
     _like = like;
     _price = price;
-    _model = model;
+    _creditPrice = creditPrice;
     _category = category;
     _description = description;
     _charecteristics = charecteristics;
@@ -89,7 +89,7 @@ class CategoryList {
   CategoryList.fromJson(dynamic json) {
     _like = json['like'];
     _price = json['price'];
-    _model = json['model'];
+    _creditPrice = json['creditPrice'];
     _category = json['category'];
     _description = json['description'];
     _charecteristics = json['charecteristics'];
@@ -101,7 +101,7 @@ class CategoryList {
 
   bool? _like;
   String? _price;
-  String? _model;
+  String? _creditPrice;
   String? _category;
   String? _description;
   String? _charecteristics;
@@ -113,7 +113,7 @@ class CategoryList {
   CategoryList copyWith({
     bool? like,
     String? price,
-    String? model,
+    String? creditPrice,
     String? category,
     String? description,
     String? charecteristics,
@@ -127,7 +127,7 @@ class CategoryList {
         title: title ?? _title,
         like: like ?? _like,
         price: price ?? _price,
-        model: model ?? _model,
+        creditPrice: creditPrice ?? _creditPrice,
         category: category ?? _category,
         description: description ?? _description,
         charecteristics: charecteristics ?? _charecteristics,
@@ -137,7 +137,7 @@ class CategoryList {
 
   bool? get like => _like;
   String? get price => _price;
-  String? get model => _model;
+  String? get creditPrice => _creditPrice;
   String? get category => _category;
   String? get description => _description;
   String? get charecteristics => _charecteristics;
@@ -150,7 +150,7 @@ class CategoryList {
     final map = <String, dynamic>{};
     map['like'] = _like;
     map['price'] = _price;
-    map['model'] = _model;
+    map['creditPrice'] = _creditPrice;
     map['category'] = _category;
     map['charecteristics'] = _charecteristics;
     map['id'] = _id;
@@ -174,44 +174,52 @@ String titleToJson(Title data) => json.encode(data.toJson());
 class Title {
   Title({
     String? title,
+    String? creditePrice,
     String? price,
     ListOne? list,
 
   }) {
     _title = title;
+    _creditePrice = creditePrice;
     _price = price;
     _list = list;
   }
 
   Title.fromJson(dynamic json) {
     _title = json['title'];
+    _creditePrice = json['creditePrice'];
     _price = json['price'];
     _list = json['list'] != null ? ListOne.fromJson(json['list']) : null;
   }
 
   String? _title;
+  String? _creditePrice;
   String? _price;
   ListOne? _list;
 
   Title copyWith({
     ListOne? list,
     String? title,
+    String? creditePrice,
     String? price,
 
   }) =>
       Title(
         title: title ?? _title,
+        creditePrice: creditePrice ?? _creditePrice,
         price: price ?? _price,
         list: list ?? _list,
       );
 
   String? get title => _title;
+  String? get creditePrice => _creditePrice;
   String? get price => _price;
   ListOne? get name => _list;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['title'] = _title;
+    map['creditePrice'] = _creditePrice;
     map['price'] = _price;
     if (_list != null) {
       map['list'] = _list?.toJson();
