@@ -7,7 +7,7 @@ import 'home_page.dart';
 
 class ShimerPage extends StatefulWidget {
   const ShimerPage({Key? key}) : super(key: key);
-  static const String id = "shimer_page";
+  static const String id = "splash_page";
 
   @override
   State<ShimerPage> createState() => _ShimerPageState();
@@ -34,12 +34,12 @@ class _ShimerPageState extends State<ShimerPage> {
   @override
   Widget build(BuildContext context) {
     return Shimmer(
-        duration: const Duration(milliseconds: 800), //Default value
-        interval: const Duration(milliseconds: 300), //Default value: Duration(seconds: 0)
+        duration: Duration(milliseconds: 800), //Default value
+        interval: Duration(milliseconds: 300), //Default value: Duration(seconds: 0)
         color: Colors.grey, //Default value
         colorOpacity: 0.4, //Default value
         enabled: true, //Default value
-        direction: const ShimmerDirection.fromLTRB(),  //Default Value
+        direction: ShimmerDirection.fromLTRB(),  //Default Value
         child: Container(
             color: Colors.white,
             ));
