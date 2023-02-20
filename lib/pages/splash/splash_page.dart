@@ -56,7 +56,8 @@ class _SplashPageState extends State<SplashPage> {
         child: Stack(
           children: <Widget>[
             Center(
-              child: Image.asset("assets/images/logo_ic.png", height: 250, width: 350,color: Colors.indigo,),
+              child: Image.asset("assets/images/logo_ic.png", height: 250,
+                width: 350,color: Colors.red,),
             ),
           ],
         ),

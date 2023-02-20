@@ -1,8 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:yuksalish_1/model/firebase_services/model_services.dart';
-import 'package:yuksalish_1/model/provider/model_pv.dart';
 
 class KatalogItemList extends StatelessWidget {
   const KatalogItemList({
@@ -49,7 +47,7 @@ class KatalogItemList extends StatelessWidget {
                   Navigator.of(context).pop();
 
                 },
-                icon: Icon(Icons.arrow_back,color: Colors.indigo,),
+                icon: const Icon(Icons.arrow_back,color: Colors.indigo,),
               ),
             ],
           ),
@@ -100,7 +98,7 @@ class KatalogItemList extends StatelessWidget {
                             Expanded(
                                 child: Text(
                               snapshot.data!.docs[index].data().title!.title ?? "",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   fontSize: 16, fontWeight: FontWeight.bold),
                             )),
                           ],
@@ -109,21 +107,20 @@ class KatalogItemList extends StatelessWidget {
                       Expanded(
                         flex: 3,
                         child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 5),
+                          margin: const EdgeInsets.symmetric(horizontal: 5),
                           decoration: BoxDecoration(
                             image: const DecorationImage(
                               fit: BoxFit.cover,
                               image: AssetImage("assets/images/image_1.png"),
                             ),
-                            color: Color(0xffCFECEC),
+                            color: const Color(0xffCFECEC),
                             borderRadius: BorderRadius.circular(25),
                             boxShadow: [
                               BoxShadow(
-                                color: Color(0xffF0F8FF).withOpacity(0.9),
+                                color: const Color(0xffF0F8FF).withOpacity(0.9),
                                 spreadRadius: 1,
                                 blurRadius: 5,
-                                offset: Offset(
-                                    0, 5), // changes x,y position of shadow
+                                offset: const Offset(0, 5), // changes x,y position of shadow
                               ),
                             ],
                           ),
@@ -137,7 +134,7 @@ class KatalogItemList extends StatelessWidget {
                               children: [
                                 Text(
                                   snapshot.data!.docs[index].data().price ?? "",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.redAccent),
@@ -185,7 +182,7 @@ class KatalogItemList extends StatelessWidget {
                                         fontWeight: FontWeight.w500,
                                         color: Colors.black),
                                   ),
-                                  Spacer(),
+                                  const Spacer(),
                                   InkWell(
                                       onTap: () {},
                                       child: const Icon(Icons.favorite_border))
@@ -199,7 +196,7 @@ class KatalogItemList extends StatelessWidget {
                   ),
                 );
               }
-              return Text("");
+              return const Text("");
             },
             // itemCount: snapshot.data?.length ?? 0,
           );

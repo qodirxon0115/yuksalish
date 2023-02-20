@@ -21,7 +21,7 @@ Widget homeBannerView(context) {
 
   return Container(
     height: size.height * 0.35,
-    color: Colors.indigo.withOpacity(0.3),
+    color: Colors.white.withOpacity(0.3),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

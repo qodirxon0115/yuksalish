@@ -68,7 +68,7 @@ class PersistentHeader extends SliverPersistentHeaderDelegate {
                     topRight: Radius.elliptical(topRight ?? 0, topRight ?? 0),
                     topLeft: Radius.elliptical(topRight ?? 0, topRight ?? 0),
                   ),
-                  color: Colors.indigo.withOpacity(0.3)),
+                  color: Colors.white),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -119,20 +119,16 @@ floating: true,
                                   "assets/images/logo_ic_home.png",
                                   // height: 50,
                                   width: 110,
-                                  color: Colors.indigo,
+                                  color: Colors.red,
                                 ),
-                                const SizedBox(
-                                  height: 8,
-                                )
+                                const SizedBox(height: 8,)
                               ],
                             ),
-                            const SizedBox(
-                              width: 8,
-                            ),
+                            const SizedBox(width: 8,),
                             const Text(
                               "Yuksalish",
                               style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 22),
+                                  fontWeight: FontWeight.bold, fontSize: 22, color: Colors.red),
                             )
                           ],
                         ),
@@ -150,7 +146,7 @@ floating: true,
                                                   context,
                                                   ListView.builder(
                                                     physics:
-                                                        NeverScrollableScrollPhysics(),
+                                                        const NeverScrollableScrollPhysics(),
                                                     itemCount: listTitle.length,
                                                     itemBuilder:
                                                         (BuildContext context,
@@ -160,8 +156,7 @@ floating: true,
                                                         color: Colors.indigo
                                                             .withOpacity(0.1),
                                                         borderRadius:
-                                                            BorderRadius.circular(
-                                                                15),
+                                                            BorderRadius.circular(15),
                                                       ),
                                                       // height: 65,
                                                       margin:
@@ -177,11 +172,9 @@ floating: true,
                                                         onTap: () {},
                                                         child: Row(
                                                           children: [
-                                                            const SizedBox(
-                                                              width: 12,
-                                                            ),
+                                                            const SizedBox(width: 12,),
                                                             Text(
-                                                              "${listTitle[index]}",
+                                                              listTitle[index],
                                                               style: const TextStyle(
                                                                   fontSize: 18,
                                                                   fontWeight:
@@ -190,13 +183,10 @@ floating: true,
                                                             ),
                                                             const Spacer(),
                                                             Text(
-                                                              "${listItem[index]}",
+                                                              listItem[index],
                                                               style: const TextStyle(
                                                                   fontSize: 18,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500),
-                                                            ),
+                                                                  fontWeight: FontWeight.w500),),
                                                             Container(
                                                               height:
                                                                   size.height *
@@ -209,16 +199,10 @@ floating: true,
                                                                             50),
                                                                 color: Colors
                                                                     .indigo
-                                                                    .withOpacity(
-                                                                        0.2),
-                                                              ),
+                                                                    .withOpacity(0.2),),
                                                               margin:
-                                                                  const EdgeInsets
-                                                                      .all(8.0),
-                                                            ),
-                                                            const SizedBox(
-                                                              width: 12,
-                                                            ),
+                                                                  const EdgeInsets.all(8.0),),
+                                                            const SizedBox(width: 12,),
                                                           ],
                                                         ),
                                                       ),
@@ -235,7 +219,7 @@ floating: true,
                                         },
                                         icon: const Icon(
                                           Icons.person,
-                                          color: Colors.indigo,
+                                          color: Colors.red,
                                         ),
                                       )
                                     : Container(
@@ -266,21 +250,17 @@ floating: true,
                     IconButton(
                       onPressed: () {
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (BuildContext context) => HomePage()));
+                            builder: (BuildContext context) => const HomePage()));
                       },
-                      icon: Icon(Icons.arrow_back),
+                      icon: const Icon(Icons.arrow_back),
                     ),
-                    Spacer(
-                      flex: 4,
-                    ),
-                    Center(
+                    const Spacer(flex: 4,),
+                    const Center(
                         child: Text(
                       "Barchasini ko'rish",
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     )),
-                    Spacer(
-                      flex: 5,
-                    ),
+                    const Spacer(flex: 5,),
                   ],
                 ),
         ),

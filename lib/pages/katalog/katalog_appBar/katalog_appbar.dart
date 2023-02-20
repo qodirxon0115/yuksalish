@@ -10,7 +10,7 @@ class KatalogAppBar extends StatefulWidget {
   final String title;
   final bool isActiveBack;
 
-  KatalogAppBar({Key? key, required this.title, required this.isActiveBack})
+  const KatalogAppBar({Key? key, required this.title, required this.isActiveBack})
       : super(key: key);
 
   @override
@@ -29,12 +29,12 @@ class _KatalogAppBarState extends State<KatalogAppBar> {
             child: Container(
               width: double.infinity,
               height: size.height * 0.2,
-              decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(
+              decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(
                     topRight: Radius.elliptical(0, 0),
                     topLeft: Radius.elliptical(0, 0),
                   ),
-                  color: Colors.indigo.withOpacity(0.3)),
+                  color: Colors.white),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,7 +46,7 @@ class _KatalogAppBarState extends State<KatalogAppBar> {
                           ? const Text(
                               "Kategoriyalar",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 20),
+                                  fontWeight: FontWeight.bold, fontSize: 20, color: Colors.red),
                             )
                           : Text(
                               widget.title,
@@ -163,7 +163,7 @@ class _AnimatedSearchBarState extends State<AnimatedSearchBar>
                         controller: widget.textController,
                         textInputAction: TextInputAction.search,
                         keyboardType: TextInputType.text,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: " Nimani izlayapsiz?...",
                           hintStyle: TextStyle(
                               color: Colors.black54,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:yuksalish_1/pages/home/widgets/home/appbar/custom_appBar.dart';
 
@@ -47,7 +47,8 @@ class _SavatchaPageState extends State<SavatchaPage> {
                     children: [
                       ...List.generate(
                           2,
-                          (index) => AnimatedContainer(duration: const Duration(milliseconds: 450),
+                          (index) => AnimatedContainer(
+                            duration: const Duration(milliseconds: 450),
                             // transform: Matrix4(),
                             child: InkWell(
                                   onTap: () {
@@ -80,16 +81,15 @@ class _SavatchaPageState extends State<SavatchaPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              SizedBox(
-                height: 35,
+              const SizedBox(height: 35,),
+              Center(
+                child: Lottie.asset("assets/json_ic/empty_icon.json"),
               ),
-              Image.asset(
-                "assets/images/icons/empty_icon.png",
-                scale: 6,
-              ),
-              SizedBox(
-                height: 35,
-              ),
+              // Image.asset(
+              //   "assets/images/icons/empty_icon.png",
+              //   scale: 6,
+              // ),
+              const SizedBox(height: 35,),
               Text(
                 "Savatcha bo'sh",
                 style: TextStyle(
@@ -121,8 +121,8 @@ class SelectContainerIndicator extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Center(
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 450),
-        margin: EdgeInsets.symmetric(horizontal: 4.0),
+        duration: const Duration(milliseconds: 450),
+        margin: const EdgeInsets.symmetric(horizontal: 4.0),
         width: isActive ? size.width * 0.34 : size.width * 0.28,
         height: isActive ? size.height * 0.06 : size.height * 0.05,
         curve: Curves.linearToEaseOut,

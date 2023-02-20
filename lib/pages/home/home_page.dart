@@ -1,9 +1,7 @@
-import 'dart:async';
 
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:yuksalish_1/pages/home/widgets/home/home_widget.dart';
-import 'package:yuksalish_1/pages/home/widgets/home/task_list_widget/product_list_firebase.dart';
 import 'package:yuksalish_1/pages/savatcha/savatcha_page.dart';
 import 'package:yuksalish_1/pages/tulovlar/tulovlar_page.dart';
 
@@ -68,24 +66,25 @@ List<BottomNavyBarItem> NavigationBatItems =  [
   BottomNavyBarItem(
     icon: const Icon(Icons.home_outlined),
     title: const Text('Bosh sahifa'),
-    activeColor: Colors.indigo.withOpacity(0.8),
+    activeColor: Colors.red,
   ),
   BottomNavyBarItem(
-      icon: Image.asset("assets/images/icons/apps_ic.png",width: 28,height: 22,color: Colors.indigo,),
+      icon: Image.asset("assets/images/icons/apps_ic.png",
+        width: 28,height: 22,color: Colors.red,),
       title: const Text('Katalog'),
-    activeColor: Colors.indigo.withOpacity(0.8),
+    activeColor: Colors.red,
 
   ),
   BottomNavyBarItem(
       icon: const Icon(Icons.shopping_cart),
       title: const Text('Savatcha'),
-    activeColor: Colors.indigo.withOpacity(0.8),
+    activeColor: Colors.red,
 
   ),
   BottomNavyBarItem(
       icon: const Icon(Icons.monetization_on_outlined),
       title: const Text("To'lov"),
-    activeColor: Colors.indigo.withOpacity(0.8),
+    activeColor: Colors.red,
 
   ),
 ];

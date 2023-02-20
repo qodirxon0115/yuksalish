@@ -84,8 +84,7 @@ class _FloatingButtonActionCategoriyaState
                                     )
                                   : const Icon(
                                       Icons.add_a_photo_outlined,
-                                      size: 35,
-                                    ),
+                                      size: 35,),
                             ),
                           ),
                           const SizedBox(

@@ -36,14 +36,14 @@ final viewModel = Provider.of<MainProvider>(context);
                 onTap: (){},
                 child: Container(
                     decoration: BoxDecoration(
-                      border: Border.all(width: 3, color: Colors.indigo),
+                      border: Border.all(width: 3, color: Colors.red),
                       borderRadius: BorderRadius.circular(8),
                       gradient: const LinearGradient(
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Colors.indigo,
-                          Colors.indigo,
+                          Colors.red,
+                          Colors.red,
                         ],
                       ),
                     ),
@@ -92,7 +92,7 @@ final viewModel = Provider.of<MainProvider>(context);
                 Text(
                   " Kategoriyalar ",
                   style: TextStyle(
-                      color: Colors.indigo.withOpacity(0.8),
+                      color: Colors.red.withOpacity(0.8),
                       fontWeight: FontWeight.bold,
                       fontSize: 20),
                 ),
@@ -111,7 +111,7 @@ final viewModel = Provider.of<MainProvider>(context);
                   child:  Text(
                     " Barchasini ko'rish ",
                     style: TextStyle(
-                        color: Colors.indigo.withOpacity(0.8), fontWeight: FontWeight.bold,fontSize: 16),
+                        color: Colors.red.withOpacity(0.8), fontWeight: FontWeight.bold,fontSize: 16),
                   ),
                 )
               ],
@@ -139,7 +139,7 @@ final viewModel = Provider.of<MainProvider>(context);
                                       color: Colors.white.withOpacity(0.3),
                                       borderRadius: BorderRadius.circular(25)),
                                   child: SizedBox(
-                                      height: size.height * 0.45,
+                                      height: size.height * 0.48,
                                       child: Column(
                                         children: [
                                           SizedBox(
@@ -374,15 +374,15 @@ final viewModel = Provider.of<MainProvider>(context);
                );
               }, child: Row(
                 children: const[
-                  Icon(Icons.keyboard_arrow_down_sharp),
-                   Text("Shu yerga qo'shish"),
+                  Icon(Icons.keyboard_arrow_down_sharp,color: Colors.red,),
+                   Text("Shu yerga qo'shish", style: TextStyle(color: Colors.red,
+                       fontWeight: FontWeight.bold),),
                 ],
               )),
             ],
           ),
-          const SizedBox(
-            height: 5,
-          ),
+          const SizedBox(height: 5,),
+
           const HomeListProduct( ),
           // const ProductListFirebase(),
           // const CreateProduct(kategoriya: "Gas plita"),

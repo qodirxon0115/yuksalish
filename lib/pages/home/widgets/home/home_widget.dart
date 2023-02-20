@@ -16,8 +16,6 @@ Widget homeWidget(scrollController, widgetViewController, key, context) {
   );
 }
 
-
-
 Widget body(widgetViewController,context,key) {
 
   return SliverList(
@@ -28,9 +26,7 @@ Widget body(widgetViewController,context,key) {
           //logo
           homeBannerView(context),
 
-          const SizedBox(
-            height: 20,
-          ),
+          const SizedBox(height: 20,),
           bodyListView(context,key),
         ],
       ),

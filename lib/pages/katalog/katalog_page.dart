@@ -28,7 +28,7 @@ class _KatalogPageState extends State<KatalogPage> {
           const CatalogList(),
         ],
       ),
-      floatingActionButton:  FloatingButtonActionCategoriya(showCard: false, collectionName: '',),
+      floatingActionButton:  const FloatingButtonActionCategoriya(showCard: false, collectionName: '',),
     );
   }
 }

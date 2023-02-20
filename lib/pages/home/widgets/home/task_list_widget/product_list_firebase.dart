@@ -63,7 +63,8 @@ class ProductListFirebase extends StatelessWidget {
                             Expanded(
                                 child: Text(
                                   snapshot.data!.docs[index].data().title ?? "",
-                                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                                  style: const TextStyle(fontSize: 16,
+                                      fontWeight: FontWeight.bold),
                                 )),
                           ],
                         ),
@@ -71,7 +72,7 @@ class ProductListFirebase extends StatelessWidget {
                       Expanded(
                         flex: 3,
                         child: Container(
-                          margin: EdgeInsets.symmetric(horizontal: 5),
+                          margin: const EdgeInsets.symmetric(horizontal: 5),
                           // decoration: BoxDecoration(
                           //   image: const DecorationImage(
                           //     fit: BoxFit.cover,
@@ -98,7 +99,7 @@ class ProductListFirebase extends StatelessWidget {
                               children: [
                                 Text(
                                   snapshot.data!.docs[index].data().price ?? "",
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.w500,
                                       color: Colors.redAccent),
