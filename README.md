@@ -1,1 +1,6 @@
-![image](https://user-images.githubusercontent.com/104059523/220154992-00999512-e3ae-4fc6-b5e8-5d4b025ab27b.png)
+![login1](https://user-images.githubusercontent.com/104059523/220249516-de319ff3-eebe-465f-a7e5-c05696535baa.png)
+![login2](https://user-images.githubusercontent.com/104059523/220249542-18e576c9-3bab-434d-9df5-192a41cf3fc2.png)
+![asosiy](https://user-images.githubusercontent.com/104059523/220249569-3e2aa750-2d5e-44a8-8f6f-94dd55ef4786.png)
+![kataloglar](https://user-images.githubusercontent.com/104059523/220249581-f6124c0a-c3b6-4ba7-b70f-996d39c867b9.png)
+![savat](https://user-images.githubusercontent.com/104059523/220249640-894e62f5-bcf2-468f-83e7-333b891b944d.png)
+![tulov](https://user-images.githubusercontent.com/104059523/220249645-625ad2cb-d27a-4d8a-aad8-fcc6a29a0e60.png)
