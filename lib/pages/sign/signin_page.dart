@@ -1,5 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:yuksalish_1/pages/sign/signup_page.dart';
+import '../../model/user_model.dart';
+import '../../service/secure_service.dart';
+import '../home/home_page.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -10,14 +14,31 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
+
   final fioController = TextEditingController();
   final passwordController = TextEditingController();
+
+  void _doSign(){
+    String name = fioController.text.toString().trim();
+    String password = passwordController.text.toString().trim();
+
+    User user = User.from(name: name, password: password);
+
+    SecureService.storeApiKey("apiKey");
+
+    SecureService.loadApiKey().then((value) => {
+      print(user.name),
+      print(user.password)
+    });
+
+    Navigator.pushNamed(context, HomePage.id);
+
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-
       backgroundColor: Colors.grey[250],
       body: Column(
         children: [
@@ -127,8 +148,7 @@ class _SignInState extends State<SignIn> {
                   borderRadius: BorderRadius.circular(50),
                   color: Colors.indigoAccent,),
               child: TextButton(
-
-                  onPressed: () {},
+                  onPressed:_doSign,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [

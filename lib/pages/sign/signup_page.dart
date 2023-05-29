@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:yuksalish_1/pages/signin_page.dart';
+import 'package:yuksalish_1/pages/sign/signin_page.dart';
+import '../../model/user_model.dart';
+import '../../service/get_service.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -10,6 +12,35 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+
+  final fioController = TextEditingController();
+  final addressController = TextEditingController();
+  final phoneController = TextEditingController();
+  final passController = TextEditingController();
+  final conPassController = TextEditingController();
+
+
+  Future<void> _doLogin() async {
+    String name = fioController.text.toString().trim();
+    String address = addressController.text.toString().trim();
+    String phone = phoneController.text.toString().trim();
+    String password = passController.text.toString().trim();
+    String conPass = conPassController.text.toString().trim();
+
+    var user = User(name: name, address: address,
+        password: password, conPass: conPass, phone: phone);
+
+    GetService.storeUser(user);
+
+    final  user2 = GetService.loadUser();
+
+    print(user2.name);
+    print(user2.password);
+
+    Navigator.pushNamed(context, SignIn.id);
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +56,7 @@ class _SignUpState extends State<SignUp> {
                 child:
                 // IconButton(
                 //   icon: const
-                  Icon(Icons.arrow_back_outlined),
+                  const Icon(Icons.arrow_back_outlined),
                   // onPressed: () {
                     // Navigator.pushReplacement(
                     //     context,
@@ -74,6 +105,7 @@ class _SignUpState extends State<SignUp> {
               color: Colors.white70,
             ),
             child: TextField(
+              controller: fioController,
               decoration: InputDecoration(
                   hintText: "F.I.O",
                   hintStyle: TextStyle(color: Colors.grey[400]),
@@ -94,6 +126,7 @@ class _SignUpState extends State<SignUp> {
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25), color: Colors.white70),
             child: TextField(
+              controller: addressController,
               decoration: InputDecoration(
                 hintText: "Address",
                 hintStyle: TextStyle(color: Colors.grey[400]),
@@ -117,6 +150,7 @@ class _SignUpState extends State<SignUp> {
               color: Colors.white70,
             ),
             child: TextField(
+              controller: phoneController,
               decoration: InputDecoration(
                 hintText: "Telefon raqami",
                 hintStyle: TextStyle(color: Colors.grey[400]),
@@ -140,6 +174,7 @@ class _SignUpState extends State<SignUp> {
               color: Colors.white70,
             ),
             child: TextField(
+              controller: passController,
               decoration: InputDecoration(
                   hintText: "Parol",
                   hintStyle: TextStyle(color: Colors.grey[400]),
@@ -162,6 +197,7 @@ class _SignUpState extends State<SignUp> {
               color: Colors.white70,
             ),
             child: TextField(
+              controller: conPassController,
               decoration: InputDecoration(
                   hintText: "Parolni qaytaring",
                   hintStyle: TextStyle(color: Colors.grey[400]),
@@ -185,7 +221,7 @@ class _SignUpState extends State<SignUp> {
             ),
             child: Center(
               child: TextButton(
-                onPressed: () {},
+                onPressed: _doLogin,
                 child: const Text(
                   "Yarating",
                   style: TextStyle(
